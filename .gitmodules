@@ -1,0 +1,9 @@
+[submodule "agent_protocol_splitter"]
+	path = agent_protocol_splitter
+	url = https://github.com/tiiuae/agent_protocol_splitter.git
+[submodule "ros2_ws/src/px4_msgs"]
+	path = ros2_ws/src/px4_msgs
+	url = https://github.com/tiiuae/PX4-msgs.git
+[submodule "ros2_ws/src/px4_ros_com"]
+	path = ros2_ws/src/px4_ros_com
+	url = https://github.com/tiiuae/px4_ros_com.git
