@@ -1,0 +1,7 @@
+Package: agent-protocol-splitter
+Version: VERSION
+Maintainer: Jukka Laitinen <jukkax@ssrc.tii.ae>
+Architecture: amd64
+Depends: 
+Description: Auterion agent protocol splitter for having RTPS and Mavlink in a single uart channel
+ Provides the agent_protocol_splitter binary
