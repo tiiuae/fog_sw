@@ -1,0 +1,6 @@
+Package: fast-rtps-gen
+Version: VERSION
+Maintainer: Jari Nippula <jarix@ssrc.tii.ae>
+Architecture: amd64
+Depends:
+Description: Code generation tool to create RTPS message headers from IDL spec file
