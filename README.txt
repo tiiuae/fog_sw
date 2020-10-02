@@ -77,3 +77,20 @@ source fog_sw/ros2_ws/install/setup.bash
 ros2 launch px4_ros_com sensor_combined_listener.launch.py
 
 
+Use mission control (px4_mavlink_ctrl node):
+============================================
+
+# px4_mavlink_ctrl node subscribes /mavlinkcmd topic (type: std_msgs/msg/String)
+# and sends mavlink messages to PX4 according to commands.
+# Supported commands are:
+#    takeoff
+#    land
+#    start mission
+#    return to launch
+#    hold
+#    continue mission
+
+# Start mission requires that there is already a mission loaded into
+# the drone (e.g. by QGroundControl app)
+# To test mission commands, send commands to topic, e.g:
+ros2 topic pub -t 1 /mavlinkcmd std_msgs/msg/String "data: takeoff"
