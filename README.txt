@@ -3,7 +3,7 @@ ROS2 install:
 =============
 
 ## Install ROS2 following instructions here:
-## https://index.ros.org/doc/ros2/Installation/Foxy/Linux-Install-Binary/
+## https://index.ros.org/doc/ros2/Installation/Foxy/Linux-Install-Debians/
 
 sudo apt install openjdk-11-jdk libasio-dev python3-pip
 pip3 install --user pyros-genmsg
@@ -94,3 +94,18 @@ Use mission control (px4_mavlink_ctrl node):
 # the drone (e.g. by QGroundControl app)
 # To test mission commands, send commands to topic, e.g:
 ros2 topic pub -t 1 /mavlinkcmd std_msgs/msg/String "data: takeoff"
+
+
+Make Debian packages:
+=====================
+sudo apt install python3-bloom dh-make debhelper fakeroot
+
+# build ros2_ws with colcon first
+# TEMPORARY FIX: Comment out line: "<depend>px4_msgs</depend>"
+# from ros2_ws/src/px4_ros_com/package.xml before generating package.
+
+source ros2_ws/install/setup.bash
+cd packaging
+./package.sh
+
+# Uncomment the px4_msgs depend which was commented out above.
