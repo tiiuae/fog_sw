@@ -1,0 +1,7 @@
+Package: fog-sw-systemd-services
+Version: VERSION
+Maintainer: Jukka Laitinen <jukkax@ssrc.tii.ae>
+Architecture: amd64
+Depends: 
+Description: Provides systemd service files for fog-sw components
+ Provides .service files for several sw nodes which need to be started at boot

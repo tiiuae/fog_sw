@@ -1,0 +1,13 @@
+[Unit]
+Description="micrortps_agent startup"
+After=network.target
+
+[Service]
+Type=simple
+Environment=ROS_HOSTNAME=localhost
+Environment=ROS_MASTER_URI=http://localhost:11311
+Environment=ROS_LOG_DIR=/var/log/sad/log
+ExecStart=/bin/sh -c ". /opt/ros/foxy/setup.sh; micrortps_agent -t UDP -r 2020 -s 2019"
+
+[Install]
+WantedBy=multi-user.target
