@@ -38,6 +38,11 @@ cd fog_sw/tools
 sudo dpkg -i fastrtps*.deb
 popd
 
+# Update ros dependencies
+pushd
+cd fog_sw
+./build_setup.sh
+popd
 
 # build ros2 modules:
 pushd.
