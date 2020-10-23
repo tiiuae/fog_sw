@@ -1,0 +1,13 @@
+[Unit]
+Description="Drone cloud communication link"
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+EnvironmentFile=/enclave/drone_device_id
+ExecStart=/bin/bash -c ". /opt/ros/foxy/setup.bash; /usr/bin/communication_link -device_id ${DRONE_DEVICE_ID}"
+
+[Install]
+WantedBy=multi-user.target
