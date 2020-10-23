@@ -22,3 +22,6 @@
 [submodule "mavlink-router"]
 	path = mavlink-router
 	url = git@github.com:intel/mavlink-router.git
+[submodule "ros2_ws/src/communication_link"]
+	path = ros2_ws/src/communication_link
+	url = https://github.com/tiiuae/communication_link.git
