@@ -8,6 +8,10 @@ pushd systemd
 ./package.sh
 popd
 
+pushd mavlink-router
+./package.sh
+popd
+
 pushd ../ros2_ws/src/px4_mavlink_ctrl
 bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && fakeroot debian/rules binary && mv ../*.deb ../../../packaging/
 popd

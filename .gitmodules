@@ -19,3 +19,6 @@
 [submodule "ros2_ws/src/camera/src/ros2_v4l2_camera"]
 	path = ros2_ws/src/camera/src/ros2_v4l2_camera
 	url = https://gitlab.com/boldhearts/ros2_v4l2_camera.git
+[submodule "mavlink-router"]
+	path = mavlink-router
+	url = git@github.com:intel/mavlink-router.git

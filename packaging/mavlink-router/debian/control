@@ -1,0 +1,7 @@
+Package: mavlink-router
+Version: VERSION
+Maintainer: Jukka Laitinen <jukkax@ssrc.tii.ae>
+Architecture: amd64
+Depends:
+Description: Intel mavlink-router
+ Provides mavlink-router to route mavlink to several endpoints
