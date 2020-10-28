@@ -5,7 +5,7 @@ ROS2 install:
 ## Install ROS2 following instructions here:
 ## https://index.ros.org/doc/ros2/Installation/Foxy/Linux-Install-Debians/
 
-sudo apt install openjdk-11-jdk libasio-dev python3-pip
+sudo apt install openjdk-11-jdk libasio-dev python3-pip python3-colcon-common-extensions
 pip3 install --user pyros-genmsg
 
 # Add ros2 script start into startup script (e.g. ~/.bashrc)
