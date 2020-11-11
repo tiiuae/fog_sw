@@ -1,6 +1,7 @@
 #!/bin/sh
 
 echo "--- Generating /etc/ros/rosdep/sources.list.d/50-fogsw.list (as su)"
+sudo sh -c 'mkdir -p /etc/ros/rosdep/sources.list.d'
 sudo sh -c 'echo "yaml file://${PWD}/rosdep.yaml" > /etc/ros/rosdep/sources.list.d/50-fogsw.list'
 
 echo "--- Updating rosdep"
