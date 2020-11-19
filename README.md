@@ -38,6 +38,7 @@ $ popd
 $ pushd .
 $ cd fog_sw/tools
 $ sudo dpkg -i fastrtps*.deb
+$ sudo dpkg -i mavsdk_0.34.0_ubuntu20.04_amd64.deb
 $ popd
 ```
 ### Update ROS2 dependencies
