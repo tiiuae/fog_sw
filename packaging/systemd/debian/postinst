@@ -1,4 +1,3 @@
 #!/bin/bash
 
-systemctl enable agent_protocol_splitter.service communication_link.service micrortps_agent.service px4_mavlink_ctrl.service
-
+systemctl enable agent_protocol_splitter.service communication_link.service micrortps_agent.service px4_mavlink_ctrl.service mavlink_router.service
