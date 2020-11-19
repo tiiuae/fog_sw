@@ -13,7 +13,7 @@ pushd mavlink-router
 popd
 
 pushd ../ros2_ws/src/px4_mavlink_ctrl
-bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && fakeroot debian/rules binary && mv ../*.deb ../../../packaging/
+bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && sed -i 's/^\tdh_shlibdeps.*/& --dpkg-shlibdeps-params=--ignore-missing-info/g' debian/rules && fakeroot debian/rules binary && mv ../*.deb ../../../packaging/
 popd
 
 pushd ../ros2_ws/src/px4_ros_com
