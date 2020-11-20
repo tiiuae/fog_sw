@@ -7,8 +7,12 @@ Here are step by step instructions to setup ROS2 environment into Drone HW.
 Install ROS2 following instructions here:<br>
 https://index.ros.org/doc/ros2/Installation/Foxy/Linux-Install-Debians/
 
+Install MAVSDK (v0.34.0) from debian package:<br>
+https://github.com/mavlink/MAVSDK/releases/download/v0.34.0/mavsdk_0.34.0_ubuntu20.04_amd64.deb
+
+Install other dependencies:<br>
 ```
-$ sudo apt install openjdk-11-jdk libasio-dev python3-pip python3-colcon-common-extensions python3-future
+$ sudo apt install gazebo9 libgazebo9-dev libgstreamer-plugins-base1.0-dev python3-toml python3-jinja2 libopencv-dev python3-rosdep python3-rosdep2
 $ pip3 install --user pyros-genmsg
 ```
 Add ROS2 script start into startup script (e.g. ~/.bashrc)<br>
