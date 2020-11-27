@@ -5,7 +5,7 @@ Description=PX4 Mavlink Message Control Service
 Type=simple
 User=root
 Group=root
-ExecStart=/bin/bash -c ". /opt/ros/foxy/setup.bash; ros2 launch px4_mavlink_ctrl mavlink_ctrl.launch"
+ExecStart=/bin/sh -c ". /opt/ros/foxy/setup_fog.sh; ros2 launch px4_mavlink_ctrl mavlink_ctrl.launch"
 
 [Install]
 WantedBy=multi-user.target
