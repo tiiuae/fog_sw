@@ -14,6 +14,8 @@ make_deb() {
 	cp debian/postinst ${build_dir}/DEBIAN/
 	cp debian/prerm ${build_dir}/DEBIAN/
 	cp system/* ${build_dir}/etc/systemd/system/
+	mkdir -p ${build_dir}/opt/ros/foxy
+	cp setup_fog.sh ${build_dir}/opt/ros/foxy/
 
 	get_version
 	sed -i "s/VERSION/${version}/" ${build_dir}/DEBIAN/control
