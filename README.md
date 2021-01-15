@@ -12,7 +12,7 @@ https://github.com/mavlink/MAVSDK/releases/download/v0.34.0/mavsdk_0.34.0_ubuntu
 
 Install other dependencies:<br>
 ```
-$ sudo apt install gazebo9 libgazebo9-dev libgstreamer-plugins-base1.0-dev python3-toml python3-jinja2 libopencv-dev python3-rosdep python3-rosdep2
+$ sudo apt install gazebo9 libgazebo9-dev libgstreamer-plugins-base1.0-dev python3-toml python3-jinja2 libopencv-dev python3-rosdep python3-rosdep2 libgstreamer-plugins-bad1.0-dev
 $ pip3 install --user pyros-genmsg
 ```
 Add ROS2 script start into startup script (e.g. ~/.bashrc)<br>
