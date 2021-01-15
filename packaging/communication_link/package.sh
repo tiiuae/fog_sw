@@ -14,6 +14,10 @@ build() {
 	pushd ../../ros2_ws/src/communication_link
 	go build
 	cp -f communication_link ../../../packaging/communication_link/ && go clean
+	cd gstnode
+	go build
+	cp gstnode ../../../../packaging/communication_link/ && go clean
+	cd ..
 	popd
 }
 
@@ -27,6 +31,7 @@ make_deb() {
 	cp debian/postinst ${build_dir}/DEBIAN/
 	cp debian/prerm ${build_dir}/DEBIAN/
 	cp communication_link ${build_dir}/usr/bin/
+	cp gstnode ${build_dir}/usr/bin/
 
 	get_version
 	sed -i "s/VERSION/${version}/" ${build_dir}/DEBIAN/control
