@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/protocol_splitter -d /dev/ttyS7 -x 14540 -w 14580 -y 2019 -z 2020
+ExecStart=/usr/bin/protocol_splitter -d /dev/ttyS7 -b 921600 -x 14540 -w 0 -y 2019 -z 2020
 
 [Install]
 WantedBy=multi-user.target
