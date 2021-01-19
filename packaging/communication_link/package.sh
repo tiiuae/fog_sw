@@ -37,6 +37,7 @@ make_deb() {
 	sed -i "s/VERSION/${version}/" ${build_dir}/DEBIAN/control
 	cat ${build_dir}/DEBIAN/control
 	echo communication-link_${version}_amd64.deb
+	rm -rf ../communication-link_*.deb
 	fakeroot dpkg-deb --build ${build_dir} ../communication-link_${version}_amd64.deb
 	rm -rf ${build_dir}
 	echo "Done"
