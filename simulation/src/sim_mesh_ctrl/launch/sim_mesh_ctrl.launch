@@ -1,0 +1,6 @@
+<launch>
+  <node name="sim_mesh_ctrl" pkg="sim_mesh_ctrl" exec="sim_mesh_ctrl" namespace='$(env DRONE_DEVICE_ID)'>
+    <param name="port" value="15517"/>
+    <param name="address" value="0.0.0.0"/>
+  </node>
+</launch>
