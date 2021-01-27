@@ -7,12 +7,29 @@ Here are step by step instructions to setup ROS2 environment into Drone HW.
 Install ROS2 following instructions here:<br>
 https://index.ros.org/doc/ros2/Installation/Foxy/Linux-Install-Debians/
 
-Install MAVSDK (v0.34.0) from debian package:<br>
-https://github.com/mavlink/MAVSDK/releases/download/v0.34.0/mavsdk_0.34.0_ubuntu20.04_amd64.deb
-
-Install other dependencies:<br>
+Install dependencies to build fog_sw:<br>
 ```
-$ sudo apt install gazebo9 libgazebo9-dev libgstreamer-plugins-base1.0-dev python3-toml python3-jinja2 libopencv-dev python3-rosdep python3-rosdep2 libgstreamer-plugins-bad1.0-dev nlohmann-json3-dev
+$ sudo apt update
+$ sudo apt install \
+    build-essential \
+    dh-make debhelper \
+    fakeroot \
+    git-core \
+    golang \
+    libasio-dev \
+    openjdk-11-jdk-headless \
+    openssh-client \
+    python3-bloom \
+    python3-colcon-common-extensions \
+    python3-pip \
+    python3-future \
+    python3-genmsg \
+    ros-foxy-ros-base \
+    libgstreamer1.0-0 \
+    libgstreamer-plugins-base1.0-dev \
+    libgstreamer-plugins-bad1.0-dev \
+    libgstreamer-plugins-good1.0-dev \
+    nlohmann-json3-dev
 $ pip3 install --user pyros-genmsg
 ```
 Add ROS2 script start into startup script (e.g. ~/.bashrc)<br>
@@ -21,21 +38,42 @@ Add ROS2 script start into startup script (e.g. ~/.bashrc)<br>
 
 ## PX4 & gazebo install
 ```
-$ sudo apt install gazebo9 libgazebo9-dev libgstreamer-plugins-base1.0-dev python3-toml $ python3-jinja2 libopencv-dev
+$ sudo apt update
+$ sudo apt install \
+    gazebo11 \
+    libgazebo11-dev \
+    cmake \
+    libboost-all-dev \
+    libeigen3-dev \
+    libgstreamer-plugins-base1.0-dev \
+    libopencv-dev \
+    libopencv-imgproc-dev \
+    openjdk-11-jdk-headless \
+    python3 \
+    python3-empy \
+    python3-jinja2 \
+    python3-pip \
+    python3-setuptools \
+    python3-toml \
+    python3-yaml \
+    python3-packaging \
+    python3-numpy \
+    python3-genmsg
+
 ```
 ## Install & Build DroneSW
 
 ### Clone repositories:
 ```
-$ pushd .
-$ git clone git@github.com:ssrc-tii/fog_sw.git
+$ git clone https://github.com/tiiuae/fog_sw.git
 $ cd fog_sw
 $ git submodule update --init --recursive
 $ cd ..
-$ git clone git@github.com:ssrc-tii/px4-firmware.git
+
+$ git clone https://github.com/tiiuae/px4-firmware.git
 $ cd px4-firmware
 $ git submodule update --init --recursive
-$ popd
+$ cd ..
 ```
 ### Install tools
 ```
@@ -53,16 +91,13 @@ $ ./build_setup.sh
 $ popd
 ```
 ### Build and Generate debian packages
-Install tools for debian packaging<br>
-`$ sudo apt install python3-bloom dh-make debhelper fakeroot`
 
 Generate deb files:
 ```
-$ source ros2_ws/install/setup.bash
-$ cd packaging
+$ cd fog_sw/packaging
 $ ./package.sh
 ```
-
+Debian packages are generated into fog_sw/packaging folder
 
 ## Prepare HW
 1. Transfer debian packages to the drone mission computer via ssh or USB stick. Following steps expect .deb files being located in **/packages** directory.
@@ -96,7 +131,7 @@ See build & launch instructions from ***ros2_ws/src/communication_link/README.md
 _[ Start new terminal window and run commands: ]_
 ```
 $ cd px4-firmware
-$ make px4_sitl_rtps gazebo_iris_rtps
+$ make px4_sitl_rtps gazebo_ssrc_fog_x
 ```
 _[ Wait until PX4 starts up.. and run command in PX4 shell: ]_
 ```
