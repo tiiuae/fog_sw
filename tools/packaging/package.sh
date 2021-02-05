@@ -7,3 +7,7 @@ popd
 pushd fast-rtps-lib
 ./package.sh
 popd
+
+pushd libsurvive
+./package.sh
+popd
