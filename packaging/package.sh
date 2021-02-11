@@ -26,6 +26,10 @@ pushd ../ros2_ws/src/px4_ros_com
 bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && fakeroot debian/rules binary && mv ../*.deb ../../../packaging/
 popd
 
+pushd ../ros2_ws/src/indoor_pos
+bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && fakeroot debian/rules binary && mv ../*.deb ../../../packaging/
+popd
+
 pushd ../simulation/src/sim_mesh_ctrl
 bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && fakeroot debian/rules binary && mv ../*.deb ../../../packaging/
 popd
