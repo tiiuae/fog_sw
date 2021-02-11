@@ -1,0 +1,13 @@
+[Unit]
+Description=Indoor positioning service
+
+[Service]
+Type=simple
+User=root
+Group=root
+Restart=always
+RestartSec=2
+ExecStart=/bin/sh -c ". /opt/ros/foxy/setup_fog.sh; ros2 launch indoor_pos indoor_pos.launch"
+
+[Install]
+WantedBy=multi-user.target
