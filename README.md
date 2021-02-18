@@ -29,7 +29,14 @@ $ sudo apt install \
     libgstreamer-plugins-base1.0-dev \
     libgstreamer-plugins-bad1.0-dev \
     libgstreamer-plugins-good1.0-dev \
-    nlohmann-json3-dev
+    nlohmann-json3-dev \
+    ros-foxy-geodesy \
+    zlib1g-dev \
+    libusb-1.0-0-dev \
+    freeglut3-dev \
+    liblapacke-dev \
+    libopenblas-dev \
+    libatlas-base-dev
 $ pip3 install --user pyros-genmsg
 ```
 Add ROS2 script start into startup script (e.g. ~/.bashrc)<br>
@@ -81,6 +88,7 @@ $ pushd .
 $ cd fog_sw/tools
 $ sudo dpkg -i fastrtps*.deb
 $ sudo dpkg -i mavsdk_0.34.0_ubuntu20.04_amd64.deb
+$ sudo dpkg -i libsurvive*.deb
 $ popd
 ```
 ### Update ROS2 dependencies
