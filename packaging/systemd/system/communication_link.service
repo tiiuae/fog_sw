@@ -4,6 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
+User=sad
+Group=sad
 Restart=always
 RestartSec=2
 EnvironmentFile=/enclave/drone_device_id

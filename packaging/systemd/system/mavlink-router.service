@@ -3,6 +3,8 @@ Description=MAVLink Router
 
 [Service]
 Type=simple
+User=sad
+Group=sad
 ExecStart=/usr/bin/mavlink-routerd
 Restart=on-failure
 

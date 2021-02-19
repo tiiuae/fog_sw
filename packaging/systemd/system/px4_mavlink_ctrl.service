@@ -3,8 +3,8 @@ Description=PX4 Mavlink Message Control Service
 
 [Service]
 Type=simple
-User=root
-Group=root
+User=sad
+Group=sad
 ExecStart=/bin/sh -c ". /opt/ros/foxy/setup_fog.sh; ros2 launch px4_mavlink_ctrl mavlink_ctrl.launch"
 
 [Install]

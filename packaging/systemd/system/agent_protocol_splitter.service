@@ -4,6 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
+User=sad
+Group=sad
 ExecStart=/usr/bin/protocol_splitter -b 3000000 -d /dev/ttyS7 -x 14540 -w 14580 -y 2019 -z 2020
 
 [Install]
