@@ -6,7 +6,7 @@ sudo sh -c 'echo "yaml file://${PWD}/rosdep.yaml" > /etc/ros/rosdep/sources.list
 
 if [ ! -e /etc/ros/rosdep/sources.list.d/20-default.list ]; then
 	echo "--- Initialize rosdep"
-	rosdep init
+	sudo rosdep init
 fi
 
 echo "--- Updating rosdep"
