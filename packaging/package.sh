@@ -37,3 +37,12 @@ popd
 pushd communication_link
 ./package.sh
 popd
+
+pushd ../ros2_ws/src/depthai_ctrl
+bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && \
+sed -i 's/^\tdh_shlibdeps.*/& --dpkg-shlibdeps-params=--ignore-missing-info/g' debian/rules && \
+fakeroot debian/rules binary && \
+mv ../*.deb ../../../packaging/
+popd
+
+exit 0
