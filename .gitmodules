@@ -34,3 +34,6 @@
 [submodule "ros2_ws/src/indoor_pos"]
 	path = ros2_ws/src/indoor_pos
 	url = https://github.com/tiiuae/indoor_pos.git
+[submodule "ros2_ws/src/depthai_ctrl"]
+	path = ros2_ws/src/depthai_ctrl
+	url = https://github.com/tiiuae/depthai_ctrl.git
