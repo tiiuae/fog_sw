@@ -73,7 +73,9 @@ $ sudo apt install \
 $ sudo apt update
 $ sudo apt install \
     dh-python \
-    batctl
+    batctl \
+    alfred
+
 ```
 ## Install & Build DroneSW
 
