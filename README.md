@@ -68,6 +68,13 @@ $ sudo apt install \
     python3-genmsg
 
 ```
+## Batman Mesh install
+```
+$ sudo apt update
+$ sudo apt install \
+    dh-python \
+    batctl
+```
 ## Install & Build DroneSW
 
 ### Clone repositories:
