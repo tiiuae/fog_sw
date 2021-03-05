@@ -37,3 +37,6 @@
 [submodule "ros2_ws/src/depthai_ctrl"]
 	path = ros2_ws/src/depthai_ctrl
 	url = https://github.com/tiiuae/depthai_ctrl.git
+[submodule "ros2_ws/src/mesh_com"]
+	path = ros2_ws/src/mesh_com
+	url = https://github.com/tiiuae/mesh_com.git
