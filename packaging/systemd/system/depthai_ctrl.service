@@ -8,7 +8,7 @@ User=sad
 Group=sad
 Restart=always
 RestartSec=10
-ExecStart=/bin/sh -c ". /opt/ros/foxy/setup_fog.sh; /usr/bin/depthai_ctrl"
+ExecStart=/bin/sh -c ". /opt/ros/foxy/setup_fog.sh; /opt/ros/roxy/bin/depthai_ctrl"
 
 [Install]
 WantedBy=multi-user.target
