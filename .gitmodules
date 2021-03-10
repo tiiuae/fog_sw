@@ -13,12 +13,6 @@
 [submodule "tools/Fast-RTPS-Gen"]
 	path = tools/Fast-RTPS-Gen
 	url = https://github.com/eProsima/Fast-RTPS-Gen.git
-[submodule "ros2_ws/src/camera/src/image_common"]
-	path = ros2_ws/src/camera/src/image_common
-	url = https://github.com/ros-perception/image_common.git
-[submodule "ros2_ws/src/camera/src/ros2_v4l2_camera"]
-	path = ros2_ws/src/camera/src/ros2_v4l2_camera
-	url = https://gitlab.com/boldhearts/ros2_v4l2_camera.git
 [submodule "mavlink-router"]
 	path = mavlink-router
 	url = https://github.com/mavlink-router/mavlink-router.git
