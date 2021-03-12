@@ -1,0 +1,19 @@
+ros2_ws/build
+ros2_ws/install
+ros2_ws/log
+packaging/*.deb
+
+# needed for CLion compatibility
+.idea
+CMakeLists.txt
+cmake-*/
+build/
+
+venv/
+ros2_ws/KeyFrameTrajectory.txt
+ros2_ws/src/ros-foxy-*
+*debian/
+*obj-x86_64*/
+
+# avoid adding binary to repo
+packaging/agent_protocol_splitter/protocol_splitter
