@@ -7,8 +7,8 @@
 [submodule "ros2_ws/src/px4_ros_com"]
 	path = ros2_ws/src/px4_ros_com
 	url = https://github.com/tiiuae/px4_ros_com.git
-[submodule "tools/FastRTPS-1.8.2"]
-	path = tools/FastRTPS-1.8.2
+[submodule "tools/FastRTPS-2.0.2"]
+	path = tools/FastRTPS-2.0.2
 	url = https://github.com/eProsima/Fast-RTPS.git
 [submodule "tools/Fast-RTPS-Gen"]
 	path = tools/Fast-RTPS-Gen
