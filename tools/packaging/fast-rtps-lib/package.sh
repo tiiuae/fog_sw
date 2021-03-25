@@ -1,14 +1,14 @@
 #!/bin/bash
 
 get_version() {
-	pushd ../../FastRTPS-1.8.2/
+	pushd ../../FastRTPS-2.0.2/
 	version=1.0.0~$(git describe --always --tags --dirty --match "v[0-9]*.[0-9]*.[0-9]*")
 	echo ${version}
 	popd
 }
 
 build() {
-	pushd ../../FastRTPS-1.8.2/
+	pushd ../../FastRTPS-2.0.2/
 	mkdir build
 	cd build
 	mkdir install
