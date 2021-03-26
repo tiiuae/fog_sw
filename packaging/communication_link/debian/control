@@ -2,5 +2,5 @@ Package: communication-link
 Version: VERSION
 Maintainer: Jari Nippula <jarix@ssrc.tii.ae>
 Architecture: amd64
-Depends:
+Depends: gstreamer1.0-rtsp
 Description: Communication link for drone cloud connection
