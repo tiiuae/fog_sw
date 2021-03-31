@@ -60,31 +60,20 @@ RUN curl -fsSL https://github.com/mavlink/MAVSDK/releases/download/v0.34.0/mavsd
     && dpkg -i mavsdk_0.34.0_ubuntu20.04_amd64.deb \
     && rm mavsdk_0.34.0_ubuntu20.04_amd64.deb
 
-RUN mkdir -p /fastrtps
-WORKDIR /fastrtps
+RUN mkdir -p /fastdds
+WORKDIR /fastdds
 
-RUN git clone --depth 1 --branch v1.0.4 https://github.com/eProsima/Fast-RTPS-Gen.git Fast-RTPS-Gen \
-    && cd Fast-RTPS-Gen \
+RUN git clone --depth 1 --branch v1.0.4 https://github.com/eProsima/Fast-DDS-Gen.git Fast-DDS-Gen \
+    && cd Fast-DDS-Gen \
     && git submodule update --init --recursive
 
-RUN git clone --depth 1 --branch v1.8.2 https://github.com/eProsima/Fast-RTPS.git FastRTPS-1.8.2 \
-    && cd FastRTPS-1.8.2 \
-    && git submodule update --init --recursive
-
-# Build fastrtpsgen
-RUN cd Fast-RTPS-Gen \
+# Build fastddsgen
+RUN cd Fast-DDS-Gen \
     && ./gradlew build -x test \
     && mkdir -p /usr/bin/ \
-    && mkdir -p /usr/share/fastrtpsgen/java/ \
-    && cp build/libs/fastrtpsgen.jar /usr/share/fastrtpsgen/java/fastrtpsgen.jar \
-    && cp scripts/fastrtpsgen /usr/bin/fastrtpsgen
-
-# Build and install fastRTPS lib
-RUN cd FastRTPS-1.8.2 \
-    && mkdir build \
-    && cd build \
-    && cmake ../ -DTHIRDPARTY=ON \
-    && make install
+    && mkdir -p /usr/share/fastddsgen/java/ \
+    && cp build/libs/fastddsgen.jar /usr/share/fastddsgen/java/fastddsgen.jar \
+    && cp scripts/fastddsgen /usr/bin/fastddsgen
 
 COPY fog_sw   /fog_sw
 WORKDIR /fog_sw
