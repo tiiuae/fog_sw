@@ -10,9 +10,6 @@
 [submodule "tools/FastRTPS-2.0.2"]
 	path = tools/FastRTPS-2.0.2
 	url = https://github.com/eProsima/Fast-RTPS.git
-[submodule "tools/Fast-RTPS-Gen"]
-	path = tools/Fast-RTPS-Gen
-	url = https://github.com/eProsima/Fast-RTPS-Gen.git
 [submodule "mavlink-router"]
 	path = mavlink-router
 	url = https://github.com/mavlink-router/mavlink-router.git
@@ -34,3 +31,6 @@
 [submodule "ros2_ws/src/mesh_com"]
 	path = ros2_ws/src/mesh_com
 	url = https://github.com/tiiuae/mesh_com.git
+[submodule "tools/Fast-DDS-Gen"]
+	path = tools/Fast-DDS-Gen
+	url = https://github.com/eProsima/Fast-DDS-Gen
