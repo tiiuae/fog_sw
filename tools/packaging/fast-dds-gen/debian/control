@@ -1,4 +1,4 @@
-Package: fast-rtps-gen
+Package: fast-dds-gen
 Version: VERSION
 Maintainer: Jari Nippula <jarix@ssrc.tii.ae>
 Architecture: amd64

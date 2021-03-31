@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pushd fast-rtps-gen
+pushd fast-dds-gen
 ./package.sh
 popd
 
