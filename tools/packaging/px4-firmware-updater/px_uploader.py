@@ -304,10 +304,7 @@ class uploader(object):
         self.port.flushInput()
         self.__send(uploader.GET_SYNC +
                     uploader.EOC)
-        try:
-            self.__getSync()
-        except Exception as e:
-            print(str(e))
+        self.__getSync()
 
     def __trySync(self):
         try:
@@ -548,9 +545,8 @@ class uploader(object):
 
     # get basic data about the board
     def identify(self):
-        # self.__determineInterface()
+        self.__determineInterface()
         # make sure we are in sync before starting
-
         self.__sync()
 
         # get the bootloader protocol ID first
