@@ -1,3 +1,7 @@
 #!/bin/bash
 
+systemctl stop agent_protocol_splitter.service
+
 /opt/px4fwupdater/px_uploader.py --port /dev/ttyS7 --baud-bootloader 115200 --baud-flightstack 1000000 /opt/px4fwupdater/px4_fmu-v5_ssrc.px4
+
+systemctl start agent_protocol_splitter.service
