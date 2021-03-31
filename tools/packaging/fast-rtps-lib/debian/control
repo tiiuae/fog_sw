@@ -1,6 +1,0 @@
-Package: fast-rtps-lib
-Version: VERSION
-Maintainer: Jari Nippula <jarix@ssrc.tii.ae>
-Architecture: amd64
-Depends:
-Description: FastRTPS library

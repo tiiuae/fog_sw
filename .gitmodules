@@ -7,9 +7,6 @@
 [submodule "ros2_ws/src/px4_ros_com"]
 	path = ros2_ws/src/px4_ros_com
 	url = https://github.com/tiiuae/px4_ros_com.git
-[submodule "tools/FastRTPS-2.0.2"]
-	path = tools/FastRTPS-2.0.2
-	url = https://github.com/eProsima/Fast-RTPS.git
 [submodule "mavlink-router"]
 	path = mavlink-router
 	url = https://github.com/mavlink-router/mavlink-router.git
