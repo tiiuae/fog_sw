@@ -1,0 +1,6 @@
+Package: px4-firmware-updater
+Version: 0.1
+Maintainer: Jani Paalijärvi <jani.paalijarvi@unikie.com>
+Architecture: amd64
+Depends:
+Description: PX4 firmware updater package. Installs included firmware to PX4.
