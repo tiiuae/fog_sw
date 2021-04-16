@@ -14,9 +14,6 @@ build() {
 	pushd ../../ros2_ws/src/communication_link
 	go build
 	cp -f communication_link ../../../packaging/communication_link/ && go clean
-	cd videonode
-	go build
-	cp -f videonode ../../../../packaging/communication_link/ && go clean
 	cd ..
 	popd
 }
@@ -31,7 +28,6 @@ make_deb() {
 	cp debian/postinst ${build_dir}/DEBIAN/
 	cp debian/prerm ${build_dir}/DEBIAN/
 	cp communication_link ${build_dir}/usr/bin/
-	cp videonode ${build_dir}/usr/bin/
 
 	get_version
 	sed -i "s/VERSION/${version}/" ${build_dir}/DEBIAN/control
