@@ -31,3 +31,6 @@
 [submodule "tools/Fast-DDS-Gen"]
 	path = tools/Fast-DDS-Gen
 	url = https://github.com/eProsima/Fast-DDS-Gen
+[submodule "systemd"]
+	path = systemd
+	url = https://github.com/tiiuae/fogsw_systemd.git
