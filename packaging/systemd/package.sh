@@ -1,8 +1,10 @@
 #!/bin/bash
 
 get_version() {
-    version=1.0.0~$(git describe --always --tags --match "[0-9]*.[0-9]*.[0-9]*")
+    pushd ../../systemd
+    version=1.0.0~$(git describe --always --tags --dirty --match "[0-9]*.[0-9]*.[0-9]*")
     echo ${version}
+    popd
 }
 
 make_deb() {
@@ -10,14 +12,10 @@ make_deb() {
 	build_dir=$(mktemp -d)
 	mkdir ${build_dir}/DEBIAN
 	mkdir -p ${build_dir}/etc/systemd/system
-	mkdir -p ${build_dir}/etc/udev/rules.d
-	cp debian/control ${build_dir}/DEBIAN/
-	cp debian/postinst ${build_dir}/DEBIAN/
-	cp debian/prerm ${build_dir}/DEBIAN/
-	cp system/* ${build_dir}/etc/systemd/system/
-	cp udev-rules/* ${build_dir}/etc/udev/rules.d/
+	cp ../../systemd/packaging/debian/* ${build_dir}/DEBIAN/
+	cp ../../systemd/system/* ${build_dir}/etc/systemd/system/
 	mkdir -p ${build_dir}/opt/ros/foxy
-	cp setup_fog.sh ${build_dir}/opt/ros/foxy/
+	cp ../../systemd/setup_fog.sh ${build_dir}/opt/ros/foxy/
 
 	get_version
 	sed -i "s/VERSION/${version}/" ${build_dir}/DEBIAN/control
