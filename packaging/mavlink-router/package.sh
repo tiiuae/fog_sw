@@ -23,7 +23,7 @@ make_deb() {
 	cp debian/postinst ${build_dir}/DEBIAN/
 	cp debian/prerm ${build_dir}/DEBIAN/
 	mkdir -p ${build_dir}/etc/mavlink-router/
-	cp main.conf  ${build_dir}/etc/mavlink-router/
+	cp ../../mavlink-router/main.conf  ${build_dir}/etc/mavlink-router/
 	get_version
 	sed -i "s/VERSION/${version}/" ${build_dir}/DEBIAN/control
 #	cat ${build_dir}/DEBIAN/control
