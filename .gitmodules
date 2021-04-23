@@ -9,7 +9,7 @@
 	url = https://github.com/tiiuae/px4_ros_com.git
 [submodule "mavlink-router"]
 	path = mavlink-router
-	url = https://github.com/mavlink-router/mavlink-router.git
+	url = https://github.com/tiiuae/mavlink-router.git
 [submodule "ros2_ws/src/communication_link"]
 	path = ros2_ws/src/communication_link
 	url = https://github.com/tiiuae/communication_link.git
@@ -18,7 +18,7 @@
 	url = https://github.com/tiiuae/px4_mavlink_ctrl.git
 [submodule "tools/libsurvive"]
 	path = tools/libsurvive
-	url = https://github.com/cntools/libsurvive.git
+	url = https://github.com/tiiuae/libsurvive.git
 [submodule "ros2_ws/src/indoor_pos"]
 	path = ros2_ws/src/indoor_pos
 	url = https://github.com/tiiuae/indoor_pos.git
@@ -30,7 +30,7 @@
 	url = https://github.com/tiiuae/mesh_com.git
 [submodule "tools/Fast-DDS-Gen"]
 	path = tools/Fast-DDS-Gen
-	url = https://github.com/eProsima/Fast-DDS-Gen
+	url = https://github.com/tiiuae/Fast-DDS-Gen.git
 [submodule "systemd"]
 	path = systemd
 	url = https://github.com/tiiuae/fogsw_systemd.git
