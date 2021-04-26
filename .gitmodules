@@ -37,3 +37,6 @@
 [submodule "fogsw_secure_os"]
 	path = fogsw_secure_os
 	url = https://github.com/tiiuae/fogsw_secure_os.git
+[submodule "ros2_ws/src/slam/lidar_slam"]
+	path = ros2_ws/src/slam/lidar_slam
+	url = https://github.com/tiiuae/lidar_slam.git
