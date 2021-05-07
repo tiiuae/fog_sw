@@ -45,4 +45,9 @@ fakeroot debian/rules binary && \
 mv ../*.deb ../../../packaging/
 popd
 
+pushd ../fogsw_secure_os
+./package.sh
+popd
+mv ../fogsw-secure-os*.deb .
+
 exit 0

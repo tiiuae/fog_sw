@@ -34,3 +34,6 @@
 [submodule "systemd"]
 	path = systemd
 	url = https://github.com/tiiuae/fogsw_systemd.git
+[submodule "fogsw_secure_os"]
+	path = fogsw_secure_os
+	url = https://github.com/tiiuae/fogsw_secure_os.git
