@@ -61,3 +61,6 @@
 [submodule "tools/tmuxinator"]
 	path = tools/tmuxinator
 	url = https://github.com/tmuxinator/tmuxinator.git
+[submodule "ros2_ws/src/octomap_server2"]
+	path = ros2_ws/src/octomap_server2
+	url = https://github.com/fly4future/octomap_server2.git
