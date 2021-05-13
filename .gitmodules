@@ -49,3 +49,9 @@
 [submodule "fogsw_configs"]
 	path = fogsw_configs
 	url = https://github.com/tiiuae/fogsw_configs.git
+[submodule "ros2_ws/src/fog_core"]
+	path = ros2_ws/src/fog_core
+	url = https://github.com/fly4future/fog_core.git
+[submodule "ros2_ws/src/rplidar_ros2"]
+	path = ros2_ws/src/rplidar_ros2
+	url = https://github.com/fly4future/rplidar_ros2.git
