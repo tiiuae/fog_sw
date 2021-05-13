@@ -55,3 +55,9 @@
 [submodule "ros2_ws/src/rplidar_ros2"]
 	path = ros2_ws/src/rplidar_ros2
 	url = https://github.com/fly4future/rplidar_ros2.git
+[submodule "tools/tmux"]
+	path = tools/tmux
+	url = https://github.com/tmux/tmux.git
+[submodule "tools/tmuxinator"]
+	path = tools/tmuxinator
+	url = https://github.com/tmuxinator/tmuxinator.git
