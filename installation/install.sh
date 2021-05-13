@@ -13,6 +13,10 @@ MY_PATH=`( cd "$MY_PATH" && pwd )`
 
 cd "$MY_PATH"
 
+## | ---------- install ROS 2 related dependencies ------------ |
+
+bash $MY_PATH/dependencies/ros_related.sh
+
 ## | ---------------------- install tmux ---------------------- |
 
 bash $MY_PATH/dependencies/tmux/install.sh
