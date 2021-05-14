@@ -64,3 +64,9 @@
 [submodule "ros2_ws/src/octomap_server2"]
 	path = ros2_ws/src/octomap_server2
 	url = https://github.com/fly4future/octomap_server2.git
+[submodule "ros2_ws/src/fog_msgs"]
+	path = ros2_ws/src/fog_msgs
+	url = https://github.com/fly4future/fog_msgs.git
+[submodule "ros2_ws/src/control_interface"]
+	path = ros2_ws/src/control_interface
+	url = https://github.com/fly4future/control_interface.git
