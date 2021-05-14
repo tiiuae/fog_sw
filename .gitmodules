@@ -73,3 +73,6 @@
 [submodule "ros2_ws/src/navigation"]
 	path = ros2_ws/src/navigation
 	url = https://github.com/fly4future/navigation.git
+[submodule "ros2_ws/src/fog_gazebo_resources"]
+	path = ros2_ws/src/fog_gazebo_resources
+	url = https://github.com/fly4future/fog_gazebo_resources.git
