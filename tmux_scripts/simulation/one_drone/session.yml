@@ -44,9 +44,9 @@ windows:
   - goto:
       layout: tiled
       panes:
-        - 'history -s ros2 service call /$UAV_NAME/control_interface/local_setpoint fog_msgs/srv/Vec4 \"goal: \[0, 5, 5, 1\]\"'
-        - 'history -s ros2 service call /$UAV_NAME/navigation/goto fog_msgs/srv/Vec4 \"goal: \[0, 5, 5, 1\]\"'
+        - 'history -s ros2 service call /$UAV_NAME/control_interface/local_setpoint fog_msgs/srv/Vec4 \"goal: \[0, 0, 2, 1\]\"'
+        - 'history -s ros2 service call /$UAV_NAME/navigation/goto_in fog_msgs/srv/Vec4 \"goal: \[5, -5, 2, 1\]\"'
   - rviz:
       layout: tiled
       panes:
-        - ros2 run rviz2 rviz2
+        - ros2 launch octomap_server2 rviz_launch.py
