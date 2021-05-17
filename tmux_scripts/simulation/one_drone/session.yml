@@ -20,7 +20,7 @@ windows:
   - sensors:
       layout: tiled
       panes:
-        - ros2 launch fog_core sensors_launch.py use_sim_time:=true
+        - ros2 launch fog_core static_tf_launch.py
   - navigation:
       layout: tiled
       panes:
