@@ -7,8 +7,8 @@ windows:
   - simulation:
       layout: tiled
       panes:
-        # - ros2 launch fog_gazebo_resources gazebo.launch.py world:=`ros2 pkg prefix fog_gazebo_resources`/worlds/forest.world
-        - cd ~/px4_firmware;  make px4_sitl_rtps gazebo_ssrc_fog_x
+        - ros2 launch fog_gazebo_resources gazebo.launch.py world:=`ros2 pkg prefix fog_gazebo_resources`/worlds/forest.world
+        - bash `ros2 pkg prefix fog_gazebo_resources`/scripts/spawn_drone.sh ~/tii_workspace/src/px4_firmware
   - micrortps_agent:
       layout: tiled
       panes:
@@ -17,6 +17,10 @@ windows:
       layout: tiled
       panes:
         - ros2 launch control_interface control_interface.py use_sim_time:=true
+  - sensors:
+      layout: tiled
+      panes:
+        - ros2 launch fog_core sensors_launch.py use_sim_time:=true
   - navigation:
       layout: tiled
       panes:
