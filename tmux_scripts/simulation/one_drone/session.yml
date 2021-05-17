@@ -7,8 +7,8 @@ windows:
   - simulation:
       layout: tiled
       panes:
-
-        # - bash `pwd`/../../scripts/sitl_run.sh
+        # - ros2 launch fog_gazebo_resources gazebo.launch.py world:=`ros2 pkg prefix fog_gazebo_resources`/worlds/forest.world
+        - cd ~/px4_firmware;  make px4_sitl_rtps gazebo_ssrc_fog_x
   - micrortps_agent:
       layout: tiled
       panes:
