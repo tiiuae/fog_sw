@@ -7,8 +7,9 @@ windows:
   - simulation:
       layout: tiled
       panes:
-        - ros2 launch fog_gazebo_resources gazebo.launch.py world:=`ros2 pkg prefix fog_gazebo_resources`/worlds/forest.world
-        - bash `ros2 pkg prefix fog_gazebo_resources`/scripts/spawn_drone.sh ~/tii_workspace/src/px4_firmware
+        - ros2 launch fog_gazebo_resources gazebo.launch.py world:=`ros2 pkg prefix fog_gazebo_resources`/worlds/forest.world gui:=false
+        - 'history -s ros2 launch gazebo_ros gzclient.launch.py'
+        - bash `ros2 pkg prefix fog_gazebo_resources`/scripts/spawn_drone.sh ~/git/px4-firmware
   - micrortps_agent:
       layout: tiled
       panes:
