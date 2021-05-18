@@ -23,10 +23,11 @@ windows:
       panes:
         - ros2 launch fog_core static_tf_launch.py
   - navigation:
-      layout: tiled
+      layout: even-vertical
       panes:
         - ros2 launch navigation navigation.py use_sim_time:=true
-        - 'history -s ros2 service call /$UAV_NAME/navigation/goto fog_msgs/srv/Vec4 \"goal: \[0, 0, 2, 1\]\"'
+        - 'history -s ros2 run navigation waypoint_publisher.py'
+        - 'history -s ros2 service call /$UAV_NAME/navigation/goto_start std_srvs/Trigger {}'
   - octomap_server:
       layout: tiled
       panes:
@@ -43,10 +44,11 @@ windows:
         - 'history -s ros2 topic echo /VehicleStatus_PubSubTopic'
         - 'history -s ros2 topic echo /VehicleCommandAck_PubSubTopic'
   - goto:
-      layout: tiled
+      layout: even-vertical
       panes:
         - 'history -s ros2 service call /$UAV_NAME/control_interface/local_setpoint fog_msgs/srv/Vec4 \"goal: \[0, 0, 2, 1\]\"'
-        - 'history -s ros2 service call /$UAV_NAME/navigation/goto fog_msgs/srv/Vec4 \"goal: \[5, -5, 2, 1\]\"'
+        - 'history -s ros2 run navigation waypoint_publisher.py'
+        - 'history -s ros2 service call /$UAV_NAME/navigation/goto_start std_srvs/Trigger {}'
   - rviz:
       layout: tiled
       panes:
