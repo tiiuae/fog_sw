@@ -2,7 +2,6 @@
 
 echo "Update Ubuntu repository"
 sudo apt update
-sudo apt upgrade
 
 echo "Install or refresh dependencies"
 sudo apt install -y \
@@ -31,7 +30,7 @@ sudo apt install -y \
     freeglut3-dev \
     liblapacke-dev \
     libopenblas-dev \
-    libatlas-base-dev
+    libatlas-base-dev \
     gazebo11 \
     libgazebo11-dev \
     cmake \
