@@ -1,19 +1,18 @@
 name: simulation
 root: ./
 startup_window: takeoff/land
-pre_window: export ROS_DOMAIN_ID=99; export DRONE_DEVICE_ID=ssrc_fog_x; export UAV_NAME=uav1;
+pre_window: export DRONE_DEVICE_ID=ssrc_fog_x
 
 windows:
   - simulation:
       layout: tiled
       panes:
-        - ros2 launch fog_gazebo_resources gazebo.launch.py world:=`ros2 pkg prefix fog_gazebo_resources`/worlds/forest.world gui:=false
-        - 'history -s ros2 launch gazebo_ros gzclient.launch.py'
-        - bash `ros2 pkg prefix fog_gazebo_resources`/scripts/spawn_drone.sh ~/git/px4-firmware
+        - ros2 launch fog_gazebo_resources gazebo.launch.py world:=`ros2 pkg prefix fog_gazebo_resources`/worlds/forest.world
+        - 'history -s bash `ros2 pkg prefix fog_gazebo_resources`/scripts/spawn_drone.sh ~/git/px4_firmware'
   - micrortps_agent:
       layout: tiled
       panes:
-        - micrortps_agent -t UDP
+        - micrortps_agent -t UDP -n $DRONE_DEVICE_ID
   - control:
       layout: tiled
       panes:
@@ -27,7 +26,6 @@ windows:
       panes:
         - ros2 launch navigation navigation.py use_sim_time:=true
         - 'history -s ros2 run navigation waypoint_publisher.py'
-        - 'history -s ros2 service call /$UAV_NAME/navigation/goto_start std_srvs/Trigger {}'
   - octomap_server:
       layout: tiled
       panes:
@@ -35,9 +33,9 @@ windows:
   - takeoff/land:
       layout: tiled
       panes:
-        - 'history -s ros2 service call /$UAV_NAME/control_interface/arming std_srvs/srv/SetBool \"data: true\"'
-        - 'history -s ros2 service call /$UAV_NAME/control_interface/takeoff std_srvs/srv/SetBool \"data: true\"'
-        - 'history -s ros2 service call /$UAV_NAME/control_interface/land std_srvs/srv/SetBool \"data: true\"'
+        - 'history -s ros2 service call /$DRONE_DEVICE_ID/control_interface/arming std_srvs/srv/SetBool \"data: true\"'
+        - 'history -s ros2 service call /$DRONE_DEVICE_ID/control_interface/takeoff std_srvs/srv/SetBool \"data: true\"'
+        - 'history -s ros2 service call /$DRONE_DEVICE_ID/control_interface/land std_srvs/srv/SetBool \"data: true\"'
   - status:
       layout: tiled
       panes:
@@ -46,9 +44,8 @@ windows:
   - goto:
       layout: even-vertical
       panes:
-        - 'history -s ros2 service call /$UAV_NAME/control_interface/local_setpoint fog_msgs/srv/Vec4 \"goal: \[0, 0, 2, 1\]\"'
+        - 'history -s ros2 service call /$DRONE_DEVICE_ID/control_interface/local_setpoint fog_msgs/srv/Vec4 \"goal: \[0, 0, 2, 1\]\"'
         - 'history -s ros2 run navigation waypoint_publisher.py'
-        - 'history -s ros2 service call /$UAV_NAME/navigation/goto_start std_srvs/Trigger {}'
   - rviz:
       layout: tiled
       panes:
