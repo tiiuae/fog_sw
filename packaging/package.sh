@@ -34,6 +34,10 @@ pushd ../ros2_ws/src/indoor_pos
 bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && fakeroot debian/rules binary && mv ../*.deb ../../../packaging/
 popd
 
+pushd ../ros2_ws/src/mocap_pose
+bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && fakeroot debian/rules binary && mv ../*.deb ../../../packaging/
+popd
+
 pushd communication_link
 ./package.sh
 popd
