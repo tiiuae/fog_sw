@@ -7,8 +7,8 @@ windows:
   - simulation:
       layout: tiled
       panes:
-        - ros2 launch fog_gazebo_resources gazebo.launch.py world:=`ros2 pkg prefix fog_gazebo_resources`/worlds/forest.world
-        - 'history -s bash `ros2 pkg prefix fog_gazebo_resources`/scripts/spawn_drone.sh ~/git/px4_firmware'
+        - ros2 launch fog_gazebo_resources gazebo.launch.py world:=`ros2 pkg prefix fog_gazebo_resources`/worlds/small_forest.world
+        - sleep 5; bash `ros2 pkg prefix fog_gazebo_resources`/scripts/spawn_drone.sh ~/git/px4_firmware
   - micrortps_agent:
       layout: tiled
       panes:
@@ -25,7 +25,7 @@ windows:
       layout: even-vertical
       panes:
         - ros2 launch navigation navigation.py use_sim_time:=true
-        - 'history -s ros2 run navigation waypoint_publisher.py'
+        - 'history -s ros2 topic echo /$DRONE_DEVICE_ID/navigation/status'
   - octomap_server:
       layout: tiled
       panes:
@@ -45,6 +45,7 @@ windows:
       layout: even-vertical
       panes:
         - 'history -s ros2 service call /$DRONE_DEVICE_ID/control_interface/local_setpoint fog_msgs/srv/Vec4 \"goal: \[0, 0, 2, 1\]\"'
+        - 'history -s ros2 service call /$DRONE_DEVICE_ID/navigation/waypoint_in fog_msgs/srv/Vec4 \"goal: \[5, 12, 2, 1\]\"'
         - 'history -s ros2 run navigation waypoint_publisher.py'
   - rviz:
       layout: tiled
