@@ -8,10 +8,12 @@ get_version() {
 }
 
 build() {
-	pushd ../../agent_protocol_splitter/src
+	mkdir -p ../../agent_protocol_splitter/build
+	pushd ../../agent_protocol_splitter/build
 	cmake ..
 	make || exit 1
 	cp protocol_splitter ../../packaging/agent_protocol_splitter/ && make clean
+	rm -dr ../../agent_protocol_splitter/build
         popd
 }
 
