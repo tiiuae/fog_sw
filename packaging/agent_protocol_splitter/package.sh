@@ -8,7 +8,7 @@ get_version() {
 }
 
 build() {
-	mkdir ../../agent_protocol_splitter/build
+	mkdir -p ../../agent_protocol_splitter/build
 	pushd ../../agent_protocol_splitter/build
 	cmake ..
 	make || exit 1
