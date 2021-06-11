@@ -52,10 +52,6 @@
 [submodule "ros2_ws/src/fog_msgs"]
 	path = ros2_ws/src/fog_msgs
 	url = https://github.com/tiiuae/fog_msgs.git
-[submodule "ros2_ws/src/fog_core"]
-	path = ros2_ws/src/fog_core
-	url = https://github.com/tiiuae/fog_core.git
-	url = https://github.com/tiiuae/fog_core.git
 [submodule "ros2_ws/src/octomap_server2"]
 	path = ros2_ws/src/octomap_server2
 	url = https://github.com/tiiuae/octomap_server2.git
