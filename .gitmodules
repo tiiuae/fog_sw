@@ -6,7 +6,7 @@
 	url = https://github.com/tiiuae/PX4-msgs.git
 [submodule "ros2_ws/src/px4_ros_com"]
 	path = ros2_ws/src/px4_ros_com
-	url = https://github.com/fly4future/px4_ros_com.git
+	url = https://github.com/tiiuae/px4_ros_com.git
 [submodule "mavlink-router"]
 	path = mavlink-router
 	url = https://github.com/tiiuae/mavlink-router.git
