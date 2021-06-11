@@ -59,9 +59,7 @@ then
 
   echo "$0: Removing helper archive folders"
   clean_package fog_msgs
-  clean_package fog_core
   clean_package fog_gazebo_resources
-  clean_package rplidar_ros2
   clean_package octomap_server2
   clean_package control_interface
   clean_package navigation
@@ -90,10 +88,12 @@ then
   bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && fakeroot debian/rules binary 
   move_archives
   export CMAKE_PREFIX_PATH=${PWD}/debian/ros-foxy-fog-msgs/opt/ros/foxy
+  export fog_msgs_DIR=${PWD}/debian/ros-foxy-fog-msgs/opt/ros/foxy/share/fog_msgs/cmake
   popd > /dev/null
 
-  pushd ../ros2_ws/src/fog_core > /dev/null
-  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && fakeroot debian/rules binary 
+  # package that depends on mavsdk needs little hack
+  pushd ../ros2_ws/src/control_interface > /dev/null
+  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && sed -i 's/^\tdh_shlibdeps.*/& --dpkg-shlibdeps-params=--ignore-missing-info/g' debian/rules && fakeroot debian/rules binary
   move_archives
   popd > /dev/null
 
@@ -102,9 +102,18 @@ then
   move_archives
   popd > /dev/null
 
+  # we need to keep `debian` folder untouched, so .deb build happens in temporary dir
   pushd ../ros2_ws/src/rplidar_ros2 > /dev/null
-  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && fakeroot debian/rules binary 
-  move_archives
+  	echo "Creating deb package ${1} ..."
+  	build_dir=$(mktemp -d)
+  	cp -r . ${build_dir}/package
+    pushd ${build_dir}/package > /dev/null
+    bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy
+    fakeroot debian/rules binary
+    popd > /dev/null
+    mv ${build_dir}/*.*deb ${MY_PATH}/deb_files/
+    rm -rf ${build_dir}
+  	echo "Done."
   popd > /dev/null
 
   pushd ../ros2_ws/src/octomap_server2 > /dev/null
@@ -122,10 +131,6 @@ then
   move_archives
   popd > /dev/null
 
-  # package that depends on mavsdk needs little hack
-  pushd ../ros2_ws/src/control_interface > /dev/null
-  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy && sed -i 's/^\tdh_shlibdeps.*/& --dpkg-shlibdeps-params=--ignore-missing-info/g' debian/rules && fakeroot debian/rules binary 
-  move_archives
-  popd > /dev/null
+
 
 fi
