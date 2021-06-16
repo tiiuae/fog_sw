@@ -67,3 +67,6 @@
 [submodule "ros2_ws/src/control_interface"]
 	path = ros2_ws/src/control_interface
 	url = https://github.com/tiiuae/control_interface.git
+[submodule "rtl8812au"]
+	path = rtl8812au
+	url = https://github.com/tiiuae/rtl8812au.git
