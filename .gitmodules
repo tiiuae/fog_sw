@@ -52,9 +52,6 @@
 [submodule "ros2_ws/src/fog_msgs"]
 	path = ros2_ws/src/fog_msgs
 	url = https://github.com/tiiuae/fog_msgs.git
-[submodule "ros2_ws/src/fog_core"]
-	path = ros2_ws/src/fog_core
-	url = https://github.com/tiiuae/fog_core.git
 [submodule "ros2_ws/src/octomap_server2"]
 	path = ros2_ws/src/octomap_server2
 	url = https://github.com/tiiuae/octomap_server2.git
@@ -64,9 +61,21 @@
 [submodule "ros2_ws/src/rplidar_ros2"]
 	path = ros2_ws/src/rplidar_ros2
 	url = https://github.com/tiiuae/rplidar_ros2.git
+[submodule "tools/tmux"]
+	path = tools/tmux
+	url = https://github.com/tmux/tmux.git
+[submodule "tools/tmuxinator"]
+	path = tools/tmuxinator
+	url = https://github.com/tmuxinator/tmuxinator.git
+[submodule "ros2_ws/src/fog_msgs"]
+	path = ros2_ws/src/fog_msgs
+	url = https://github.com/tiiuae/fog_msgs.git
 [submodule "ros2_ws/src/control_interface"]
 	path = ros2_ws/src/control_interface
 	url = https://github.com/tiiuae/control_interface.git
 [submodule "rtl8812au"]
 	path = rtl8812au
 	url = https://github.com/tiiuae/rtl8812au.git
+[submodule "ros2_ws/src/fog_gazebo_resources"]
+	path = ros2_ws/src/fog_gazebo_resources
+	url = https://github.com/tiiuae/fog_gazebo_resources.git
