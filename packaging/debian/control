@@ -16,7 +16,6 @@ Depends: agent-protocol-splitter (= 1.0.0-13~git20210419.ed16b42),
   ros-foxy-depthai-ctrl (= 0.5.4-30~git20210614.eb8eb35),
   ros-foxy-indoor-pos (= 1.0.0-12~git20210426.81d1987),
   ros-foxy-mesh-com (= 0.3.3-29~git20210601.8ecb707),
-  ros-foxy-px4-mavlink-ctrl (= 0.1.0-11~git20210426.5836a83),
   ros-foxy-px4-msgs (= 2.0.1-5~git20210419.b4c4a12),
   ros-foxy-px4-ros-com (= 0.1.0-18~git20210614.486b625),
   rtl8812au-kmod (= 1.0.0-2~git20210614.dc56cff),
@@ -25,4 +24,4 @@ Depends: agent-protocol-splitter (= 1.0.0-13~git20210419.ed16b42),
   ros-foxy-navigation,
   ros-foxy-octomap-server2,
   ros-foxy-control-interface
-Conflicts: 
+Conflicts: ros-foxy-px4-mavlink-ctrl
