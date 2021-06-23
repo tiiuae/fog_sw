@@ -4,7 +4,7 @@ Maintainer: manuel.segarra-abad <manuel.segarra-abad@unikie.com>
 Architecture: amd64
 Description: FOG SW meta package.
 Depends: agent-protocol-splitter (= 1.0.0-13~git20210419.ed16b42),
-  communication-link (= 2.0.0-29~git20210526.843fd45),
+  communication-link (= 2.0.0-32~git20210615.1e087a6),
   fast-dds-gen (= 1.0.0-3~git20210421.694704f),
   fogsw-configs (= 1.0.0-12~git20210616.eceff77),
   fog-sw-systemd-services (= 1.0.0-32~git20210623.4e3ee38),
@@ -12,7 +12,7 @@ Depends: agent-protocol-splitter (= 1.0.0-13~git20210419.ed16b42),
   mavlink-router (= 1.0.0-6~git20210419.14c1368),
   mavsdk (= 0.34.0),
   mission-data-recorder (= 1.0.0-13~git20210526.1642cf2),
-  mission-engine (= 2.0.0-10~git20210526.b4285bc),
+  mission-engine (= 2.0.0-14~git20210621.b39d0fd),
   ros-foxy-depthai-ctrl (= 0.5.4-30~git20210614.eb8eb35),
   ros-foxy-indoor-pos (= 1.0.0-12~git20210426.81d1987),
   ros-foxy-mesh-com (= 0.3.3-29~git20210601.8ecb707),
