@@ -17,4 +17,13 @@ Depends: agent-protocol-splitter (= 1.0.0-13~git20210419.ed16b42),
   ros-foxy-mesh-com (= 0.3.3-29~git20210601.8ecb707),
   ros-foxy-px4-mavlink-ctrl (= 0.1.0-11~git20210426.5836a83),
   ros-foxy-px4-msgs (= 2.0.1-5~git20210419.b4c4a12),
-  ros-foxy-px4-ros-com (= 0.1.0-15~git20210602.4acff59)
+  ros-foxy-px4-ros-com (= 0.1.0-15~git20210602.4acff59),
+  ros-foxy-fog-msgs,
+  ros-foxy-rplidar-ros2,
+  ros-foxy-navigation,
+  ros-foxy-octomap-server2,
+  ros-foxy-control-interface
+
+
+
+

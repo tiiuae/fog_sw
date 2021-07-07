@@ -1,0 +1,53 @@
+name: simulation
+root: ./
+startup_window: takeoff/land
+pre_window: export DRONE_DEVICE_ID=ssrc_fog_x
+
+windows:
+  - simulation:
+      layout: tiled
+      panes:
+        - ros2 launch fog_gazebo_resources gazebo.launch.py world:=`ros2 pkg prefix fog_gazebo_resources`/worlds/small_forest.world
+        - sleep 5; bash `ros2 pkg prefix fog_gazebo_resources`/scripts/spawn_drone.sh ~/git/px4_firmware
+  - micrortps_agent:
+      layout: tiled
+      panes:
+        - micrortps_agent -t UDP -n $DRONE_DEVICE_ID
+  - control:
+      layout: tiled
+      panes:
+        - ros2 launch control_interface control_interface.py use_sim_time:=true
+  - sensors:
+      layout: tiled
+      panes:
+        - ros2 launch fog_core static_tf_launch.py
+  - navigation:
+      layout: even-vertical
+      panes:
+        - ros2 launch navigation navigation.py use_sim_time:=true
+        - 'history -s ros2 topic echo /$DRONE_DEVICE_ID/navigation/status'
+  - octomap_server:
+      layout: tiled
+      panes:
+        - ros2 launch octomap_server2 tii_rplidar_launch.py use_sim_time:=true
+  - takeoff/land:
+      layout: tiled
+      panes:
+        - 'history -s ros2 service call /$DRONE_DEVICE_ID/control_interface/arming std_srvs/srv/SetBool \"data: true\"'
+        - 'history -s ros2 service call /$DRONE_DEVICE_ID/control_interface/takeoff std_srvs/srv/SetBool \"data: true\"'
+        - 'history -s ros2 service call /$DRONE_DEVICE_ID/control_interface/land std_srvs/srv/SetBool \"data: true\"'
+  - status:
+      layout: tiled
+      panes:
+        - 'history -s ros2 topic echo /VehicleStatus_PubSubTopic'
+        - 'history -s ros2 topic echo /VehicleCommandAck_PubSubTopic'
+  - goto:
+      layout: even-vertical
+      panes:
+        - 'history -s ros2 service call /$DRONE_DEVICE_ID/control_interface/local_setpoint fog_msgs/srv/Vec4 \"goal: \[0, 0, 2, 1\]\"'
+        - 'history -s ros2 service call /$DRONE_DEVICE_ID/navigation/waypoint_in fog_msgs/srv/Vec4 \"goal: \[5, 12, 2, 1\]\"'
+        - 'history -s ros2 run navigation waypoint_publisher.py'
+  - rviz:
+      layout: tiled
+      panes:
+        - ros2 launch octomap_server2 rviz_launch.py

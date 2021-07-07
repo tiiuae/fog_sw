@@ -16,3 +16,4 @@ ros2_ws/src/ros-foxy-*
 
 # avoid adding binary to repo
 packaging/agent_protocol_splitter/protocol_splitter
+.tmuxinator.yml
