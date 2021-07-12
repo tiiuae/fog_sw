@@ -5,7 +5,6 @@ Architecture: amd64
 Description: FOG SW meta package.
 Depends: agent-protocol-splitter (= 1.0.0-13~git20210419.ed16b42),
   communication-link (= 2.0.0-33~git20210701.545ea2f),
-  fogsw-configs (= 1.0.0-14~git20210621.dab9587),
   fog-sw-systemd-services (= 1.0.0-36~git20210709.bd3efff),
   libsurvive (= 1.0.0-3~git20210421.b966a6c),
   mavlink-router (= 1.0.0-6~git20210419.14c1368),
@@ -25,3 +24,5 @@ Depends: agent-protocol-splitter (= 1.0.0-13~git20210419.ed16b42),
   ros-foxy-octomap-server2 (= 0.0.1-6~git20210617.22fd119),
   ros-foxy-rplidar-ros2 (= 1.10.0-10~git20210615.cbb80ba)
 Conflicts: ros-foxy-px4-mavlink-ctrl
+Recomends: fogsw-configs (= 1.0.0-14~git20210621.dab9587),
+  px4-firmware-updater (= 1.11.0-1.0.7-7-g913cf7bbd9)
