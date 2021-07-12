@@ -1,7 +1,7 @@
 #!/bin/bash
 
 get_version() {
-    version=3.1~$(git log --date=format:%Y%m%d --pretty=git%cd.%h -n 1)
+    version=4.0~$(git log --date=format:%Y%m%d --pretty=git%cd.%h -n 1)
     echo ${version}
 }
 

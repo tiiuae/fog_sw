@@ -4,17 +4,25 @@ Maintainer: manuel.segarra-abad <manuel.segarra-abad@unikie.com>
 Architecture: amd64
 Description: FOG SW meta package.
 Depends: agent-protocol-splitter (= 1.0.0-13~git20210419.ed16b42),
-  communication-link (= 2.0.0-29~git20210526.843fd45),
-  fast-dds-gen (= 1.0.0-3~git20210421.694704f),
-  fogsw-configs (= 1.0.0-4~git20210526.5b156bf),
-  fog-sw-systemd-services (= 1.0.0-21~git20210601.675cb6f),
+  communication-link (= 2.0.0-33~git20210701.545ea2f),
+  fog-sw-systemd-services (= 1.0.0-36~git20210709.bd3efff),
   libsurvive (= 1.0.0-3~git20210421.b966a6c),
   mavlink-router (= 1.0.0-6~git20210419.14c1368),
   mavsdk (= 0.34.0),
-  mission-engine (= 2.0.0-10~git20210526.b4285bc),
-  ros-foxy-depthai-ctrl (= 0.5.3-28~git20210601.80de68d),
+  mission-data-recorder (= 1.0.0-28~git20210707.ff24897),
+  mission-engine (= 2.0.0-16~git20210701.545ea2f),
+  ros-foxy-depthai-ctrl (= 0.5.6-34~git20210624.1f5590e),
   ros-foxy-indoor-pos (= 1.0.0-12~git20210426.81d1987),
-  ros-foxy-mesh-com (= 0.3.3-29~git20210601.8ecb707),
-  ros-foxy-px4-mavlink-ctrl (= 0.1.0-11~git20210426.5836a83),
+  ros-foxy-mesh-com (= 0.3.3-34~git20210611.0d866b2),
+  ros-foxy-mocap-pose (= 0.0.4-3~git20210617.713e012),
   ros-foxy-px4-msgs (= 2.0.1-5~git20210419.b4c4a12),
-  ros-foxy-px4-ros-com (= 0.1.0-15~git20210602.4acff59)
+  ros-foxy-px4-ros-com (= 0.1.0-20~git20210708.a1147fa),
+  rtl8812au-kmod (= 1.0.0-2~git20210614.dc56cff),
+  ros-foxy-control-interface (= 0.0.3-17~git20210709.22ce14e),
+  ros-foxy-fog-msgs (= 0.0.3-6~git20210621.90040f9),
+  ros-foxy-navigation (= 0.0.3-16~git20210709.f083eee),
+  ros-foxy-octomap-server2 (= 0.0.1-6~git20210617.22fd119),
+  ros-foxy-rplidar-ros2 (= 1.10.0-10~git20210615.cbb80ba)
+Conflicts: ros-foxy-px4-mavlink-ctrl
+Recomends: fogsw-configs (= 1.0.0-14~git20210621.dab9587),
+  px4-firmware-updater (= 1.11.0-1.0.7-7-g913cf7bbd9)
