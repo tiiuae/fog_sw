@@ -1,8 +1,12 @@
 #!/bin/bash
 
+if ! go version > /dev/null 2>&1; then
+  export PATH=$PATH:/usr/lib/go-1.16/bin/
+fi
+
 pushd ../../ros2_ws/src/communication_link > /dev/null
-export CGO_CFLAGS="-I$(realpath ../../install/px4_msgs/include/) -I$(realpath ../../install/fog_msgs/include/)"
-export CGO_LDFLAGS="-L$(realpath ../../install/px4_msgs/lib/) -L$(realpath ../../install/fog_msgs/lib/)"
+export CGO_CFLAGS="-I$(realpath ../px4_msgs/debian/ros-foxy-px4-msgs/opt/ros/foxy/include/) -I$(realpath ../fog_msgs/debian/ros-foxy-fog-msgs/opt/ros/foxy/include/)"
+export CGO_LDFLAGS="-L$(realpath ../px4_msgs/debian/ros-foxy-px4-msgs/opt/ros/foxy/lib/) -L$(realpath ../fog_msgs/debian/ros-foxy-fog-msgs/opt/ros/foxy/lib/)"
 mkdir -p missionengine/packaging/common
 cp -fR scripts/* missionengine/packaging/common/
 cd missionengine

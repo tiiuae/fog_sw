@@ -1,8 +1,12 @@
 #!/bin/bash
 
+if ! go version > /dev/null 2>&1; then
+  export PATH=$PATH:/usr/lib/go-1.16/bin/
+fi
+
 pushd ../../ros2_ws/src/communication_link > /dev/null
-export CGO_CFLAGS="-I$(realpath ../../install/px4_msgs/include/)"
-export CGO_LDFLAGS="-L$(realpath ../../install/px4_msgs/lib/)"
+export CGO_CFLAGS="-I$(realpath ../px4_msgs/debian/ros-foxy-px4-msgs/opt/ros/foxy/include/)"
+export CGO_LDFLAGS="-L$(realpath ../px4_msgs/debian/ros-foxy-px4-msgs/opt/ros/foxy/lib/)"
 mkdir -p communicationlink/packaging/common
 cp -fR scripts/* communicationlink/packaging/common/
 cd communicationlink

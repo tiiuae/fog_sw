@@ -24,7 +24,10 @@ if [ ! -e /usr/lib/go-1.16/bin/ ] ; then
     exit 1
 fi
 
-export PATH=$PATH:/usr/lib/go-1.16/bin/
+# Speed up builds.
+# In addition to the following environmental variable,
+# --parallel flag is needed in "fakeroot debian/rules binary" call.
+export DEB_BUILD_OPTIONS="parallel=`nproc`"
 
 function _move_debs() {
   if ls ../*.deb 1> /dev/null 2>&1; then
@@ -81,26 +84,11 @@ pushd systemd
 popd
 mv ./fog-sw-systemd*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
-pushd communication_link
-./package.sh
-popd
-mv ../ros2_ws/src/communication_link/communication-link*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
-
-pushd mission-engine
-./package.sh
-popd
-mv ../ros2_ws/src/communication_link/mission-engine*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
-
 # Not needed yet.
 #pushd ../fogsw_secure_os
 #./package.sh
 #popd
 #mv ../fogsw-secure-os*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
-
-# Speed up builds.
-# In addition to the following environmental variable,
-# --parallel flag is needed in "fakeroot debian/rules binary" call.
-export DEB_BUILD_OPTIONS="parallel=`nproc`"
 
 # ROS packages
 
@@ -128,6 +116,16 @@ pushd ../ros2_ws/src/fog_msgs
   export fog_msgs_DIR=${PWD}/debian/ros-foxy-fog-msgs/opt/ros/foxy/share/fog_msgs/cmake
   echo "Done."
 popd
+
+pushd communication_link
+./package.sh
+popd
+mv ../ros2_ws/src/communication_link/communication-link*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
+
+pushd mission-engine
+./package.sh
+popd
+mv ../ros2_ws/src/communication_link/mission-engine*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd ../ros2_ws/src/mesh_com/
   echo "Creating deb package mesh-com ..."
