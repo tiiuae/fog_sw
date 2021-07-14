@@ -2,7 +2,7 @@
 
 get_version() {
     pushd ../../mavlink-router
-    version=2.0.0~$(git describe --always --tags --dirty --match "[0-9]*.[0-9]*.[0-9]*")
+    version=1.0.0-$(git log --date=format:%Y%m%d --pretty=dirty~git%cd.%h -n 1)
     echo ${version}
 	popd
 }
