@@ -39,7 +39,7 @@ function _move_debs() {
 }
 
 function _execute_build() {
-  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy -i ${GIT_VER}
+  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy -i "${GIT_VER}"
   sed -i 's/^\tdh_shlibdeps.*/& --dpkg-shlibdeps-params=--ignore-missing-info/g' debian/rules
   fakeroot debian/rules clean
   fakeroot debian/rules "binary --parallel"
@@ -47,7 +47,7 @@ function _execute_build() {
 
 function _make_ros_deb() {
   echo "Creating deb package ${1} ..."
-  GIT_VER=$(git log --date=format:%Y%m%d --pretty=dirty~git%cd.%h- -n 1)
+  GIT_VER=0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
   build_dir=$(mktemp -d)
   cp -r . ${build_dir}/package
   pushd ${build_dir}/package > /dev/null
@@ -94,7 +94,7 @@ mv ./fog-sw-systemd*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd ../ros2_ws/src/px4_msgs
   echo "Creating deb package px4-msgs ..."
-  GIT_VER=$(git log --date=format:%Y%m%d --pretty=dirty~git%cd.%h- -n 1)
+  GIT_VER=0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
   _execute_build
   _move_debs
   rm -rf obj-x86_64-linux-gnu
@@ -107,7 +107,7 @@ popd
 
 pushd ../ros2_ws/src/fog_msgs
   echo "Creating deb package fog-msgs ..."
-  GIT_VER=$(git log --date=format:%Y%m%d --pretty=dirty~git%cd.%h- -n 1)
+  GIT_VER=0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
   _execute_build
   _move_debs
   rm -rf obj-x86_64-linux-gnu
@@ -129,7 +129,7 @@ mv ../ros2_ws/src/communication_link/mission-engine*.deb ${SCRIPT_PATH}/${DEBS_O
 
 pushd ../ros2_ws/src/mesh_com/
   echo "Creating deb package mesh-com ..."
-  GIT_VER=$(git log --date=format:%Y%m%d --pretty=dirty~git%cd.%h- -n 1)
+  GIT_VER=0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
   build_dir=$(mktemp -d)
   cp -r . ${build_dir}/package
   pushd ${build_dir}/package/modules/mesh_com > /dev/null
