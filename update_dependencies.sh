@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "Update Ubuntu repository"
 sudo apt update
@@ -9,7 +9,7 @@ sudo apt install -y \
     dh-make debhelper \
     fakeroot \
     git-core \
-    golang \
+    golang-1.16-go \
     libasio-dev \
     openjdk-11-jdk-headless \
     openssh-client \
@@ -52,9 +52,13 @@ sudo apt install -y \
     python3-genmsg \
     dh-python \
     batctl \
-    alfred
+    alfred \
+    ros-foxy-gazebo-ros
 
 pip3 install --user pyros-genmsg
+
+wget https://github.com/mavlink/MAVSDK/releases/download/v0.34.0/mavsdk_0.34.0_ubuntu20.04_amd64.deb
+sudo dpkg -i mavsdk_0.34.0_ubuntu20.04_amd64.deb
 
 echo "--- Generating /etc/ros/rosdep/sources.list.d/50-fogsw.list (as su)"
 sudo sh -c 'mkdir -p /etc/ros/rosdep/sources.list.d'
@@ -67,3 +71,5 @@ fi
 
 echo "--- Updating rosdep"
 rosdep update
+
+exit 0

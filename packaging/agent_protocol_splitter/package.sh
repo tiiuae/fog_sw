@@ -2,7 +2,7 @@
 
 get_version() {
     pushd ../../agent_protocol_splitter
-    version=1.0.0~$(git describe --always --tags --dirty --match "[0-9]*.[0-9]*.[0-9]*")
+    version=1.0.0-0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
     echo ${version}
     popd
 }
@@ -14,7 +14,7 @@ build() {
 	make || exit 1
 	cp protocol_splitter ../../packaging/agent_protocol_splitter/ && make clean
 	rm -dr ../../agent_protocol_splitter/build
-        popd
+	popd
 }
 
 make_deb() {
@@ -31,7 +31,7 @@ make_deb() {
 	get_version
 	sed -i "s/VERSION/${version}/" ${build_dir}/DEBIAN/control
 	cat ${build_dir}/DEBIAN/control
-        echo agent_protocol_splitter_${version}_amd64.deb
+	echo agent_protocol_splitter_${version}_amd64.deb
 	fakeroot dpkg-deb --build ${build_dir} ../agent-protocol-splitter_${version}_amd64.deb
 	rm -rf ${build_dir}
 	echo "Done"
