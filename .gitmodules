@@ -13,9 +13,6 @@
 [submodule "ros2_ws/src/communication_link"]
 	path = ros2_ws/src/communication_link
 	url = https://github.com/tiiuae/communication_link.git
-[submodule "ros2_ws/src/px4_mavlink_ctrl"]
-	path = ros2_ws/src/px4_mavlink_ctrl
-	url = https://github.com/tiiuae/px4_mavlink_ctrl.git
 [submodule "tools/libsurvive"]
 	path = tools/libsurvive
 	url = https://github.com/tiiuae/libsurvive.git
