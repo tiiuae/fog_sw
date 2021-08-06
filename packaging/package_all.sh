@@ -84,6 +84,13 @@ pushd systemd
 popd
 mv ./fog-sw-systemd*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
+# TODO: fix the package_wpa.sh under wpa repo in order to work in local builds.
+# Local build does not have build directory so package_wpa.sh fails.
+#pushd wpasupplicant
+#  ./package.sh
+#popd
+#mv ./wpasupplicant*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
+
 # Not needed yet.
 #pushd ../fogsw_secure_os
 #./package.sh
