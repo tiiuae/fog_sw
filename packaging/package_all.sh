@@ -60,27 +60,27 @@ function _make_ros_deb() {
 
 # Non-ROS packages
 pushd agent_protocol_splitter
-./package.sh
+  ./package.sh
 popd
 mv ./agent-protocol-splitter*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd fogsw_configs
-./package.sh
+  ./package.sh
 popd
 mv ./fogsw-configs*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd mavlink-router
-./package.sh
+  ./package.sh
 popd
 mv ./mavlink-router*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd mission-data-recorder
-./package.sh
+  ./package.sh
 popd
 mv ../mission-data-recorder/mission-data-recorder*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd systemd
-./package.sh
+  ./package.sh
 popd
 mv ./fog-sw-systemd*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
@@ -118,12 +118,12 @@ pushd ../ros2_ws/src/fog_msgs
 popd
 
 pushd communication_link
-./package.sh
+  ./package.sh
 popd
 mv ../ros2_ws/src/communication_link/communication-link*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd mission-engine
-./package.sh
+  ./package.sh
 popd
 mv ../ros2_ws/src/communication_link/mission-engine*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
@@ -138,10 +138,6 @@ pushd ../ros2_ws/src/mesh_com/
   popd > /dev/null
   rm -rf ${build_dir}
   echo "Done."
-popd
-
-pushd ../ros2_ws/src/px4_mavlink_ctrl
-  _make_ros_deb "px4-mavlink-ctrl"
 popd
 
 pushd ../ros2_ws/src/depthai_ctrl
