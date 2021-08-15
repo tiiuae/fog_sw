@@ -78,7 +78,10 @@
 	url = https://github.com/tiiuae/fog_gazebo_resources.git
 [submodule "mission-data-recorder"]
 	path = mission-data-recorder
-	url = git@github.com:tiiuae/mission-data-recorder.git
+	url = https://github.com/tiiuae/mission-data-recorder.git
 [submodule "ros2_ws/src/mocap_pose"]
 	path = ros2_ws/src/mocap_pose
-	url = git@github.com:tiiuae/mocap_pose.git
+	url = https://github.com/tiiuae/mocap_pose.git
+[submodule "wpa"]
+	path = wpa
+	url = https://github.com/tiiuae/wpa.git
