@@ -24,3 +24,9 @@ fog_msgs:
 
 dynamicEDT3D:
   ubuntu: ros-foxy-dynamic-edt-3d
+
+pcl_conversions:
+    ubuntu: ros-foxy-pcl-conversions
+
+pcl_msgs:
+    ubuntu: ros-foxy-pcl-msgs

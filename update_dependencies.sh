@@ -1,10 +1,14 @@
 #!/bin/bash
 
+set -euxo pipefail
+
 echo "Update Ubuntu repository"
 sudo apt update
 
 echo "Install or refresh dependencies"
 sudo apt install -y \
+    curl \
+    wget \
     build-essential \
     dh-make debhelper \
     fakeroot \
@@ -53,12 +57,21 @@ sudo apt install -y \
     dh-python \
     batctl \
     alfred \
+    ros-foxy-octomap \
+    ros-foxy-octomap-msgs \
+    ros-foxy-laser-geometry \
+    ros-foxy-pcl-conversions \
+    ros-foxy-pcl-msgs \
+    ros-foxy-dynamic-edt-3d \
     ros-foxy-gazebo-ros
 
 pip3 install --user pyros-genmsg
 
-wget https://github.com/mavlink/MAVSDK/releases/download/v0.34.0/mavsdk_0.34.0_ubuntu20.04_amd64.deb
-sudo dpkg -i mavsdk_0.34.0_ubuntu20.04_amd64.deb
+curl -LO https://artifactory.ssrc.fi:443/artifactory/debian-release-local/mavsdk_0.41.0_ubuntu20.04_amd64.deb
+sudo dpkg -i mavsdk_0.41.0_ubuntu20.04_amd64.deb
+
+curl -LO https://artifactory.ssrc.fi:443/artifactory/debian-release-local/libsurvive_1.0.0-3~git20210421.b966a6c_amd64.deb
+sudo dpkg -i libsurvive_1.0.0-3~git20210421.b966a6c_amd64.deb
 
 echo "--- Generating /etc/ros/rosdep/sources.list.d/50-fogsw.list (as su)"
 sudo sh -c 'mkdir -p /etc/ros/rosdep/sources.list.d'
