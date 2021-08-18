@@ -9,7 +9,10 @@ fi
 
 source /opt/ros/foxy/setup.bash
 
+set -uxo pipefail
+
 # Get the path to this script.
+CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH:-}
 SCRIPT_PATH=`dirname "$0"`
 SCRIPT_PATH=`( cd "$SCRIPT_PATH" && pwd )`
 DEBS_OUTPUT_DIR="deb_files"
@@ -33,56 +36,82 @@ function _move_debs() {
   if ls ../*.deb 1> /dev/null 2>&1; then
     mv ../*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
   fi
-  if ls ../*.ddeb 1> /dev/null 2>&1; then
-    mv ../*.ddeb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
-  fi
 }
 
 function _execute_build() {
+#  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy --place-template-files
   bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy -i "${GIT_VER}"
   sed -i 's/^\tdh_shlibdeps.*/& --dpkg-shlibdeps-params=--ignore-missing-info/g' debian/rules
   fakeroot debian/rules clean
   fakeroot debian/rules "binary --parallel"
 }
 
-function _make_ros_deb() {
-  echo "Creating deb package ${1} ..."
-  GIT_VER=0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
-  build_dir=$(mktemp -d)
-  cp -r . ${build_dir}/package
-  pushd ${build_dir}/package > /dev/null
-  _execute_build
+function _make_deb() {
+  local pkg=$1
+  cat <<- EOF
+  *********************************************************
+  Building deb package ${pkg} 
+  *********************************************************
+EOF
+  ./package.sh
   _move_debs
-  popd > /dev/null
-  rm -rf ${build_dir}
   echo "Done."
 }
 
+function _make_ros_deb() {
+  local pkg=$1
+  cat <<- EOF
+  *********************************************************
+  Building ROS deb package ${pkg} 
+  *********************************************************
+EOF
+  GIT_VER=0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
+  _execute_build
+  _move_debs
+  echo "Done."
+}
+
+pushd ../tools/Fast-DDS-Gen
+  cat <<- EOF
+  *********************************************************
+  Fast-DDS-Gen build 
+  *********************************************************
+EOF
+  ./gradlew build
+  export PATH=$PATH:$PWD/scripts
+popd
+
+#pushd ../tools/libsurvive
+#  cat <<- EOF
+#  *********************************************************
+#  libsurvive build 
+#  *********************************************************
+#EOF
+#  cmake . 
+#  make all
+#  sudo make install
+#popd
+
 # Non-ROS packages
 pushd agent_protocol_splitter
-  ./package.sh
+  _make_deb agent_protocol_splitter
 popd
-mv ./agent-protocol-splitter*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd fogsw_configs
-  ./package.sh
+  _make_deb fogsw_configs
 popd
-mv ./fogsw-configs*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd mavlink-router
-  ./package.sh
+  _make_deb mavlink-router
 popd
-mv ./mavlink-router*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd mission-data-recorder
-  ./package.sh
+  _make_deb mission-data-recorder
 popd
-mv ../mission-data-recorder/mission-data-recorder*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd systemd
-  ./package.sh
+  _make_deb systemd
 popd
-mv ./fog-sw-systemd*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd fogsw_kernel_config
   ./package.sh
@@ -96,69 +125,47 @@ mv ./linux-image*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 #popd
 #mv ./wpasupplicant*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
-# Not needed yet.
-#pushd ../fogsw_secure_os
-#./package.sh
-#popd
-#mv ../fogsw-secure-os*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
-
 # ROS packages
-
 pushd ../ros2_ws/src/px4_msgs
-  echo "Creating deb package px4-msgs ..."
-  GIT_VER=0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
-  _execute_build
-  _move_debs
-  rm -rf obj-x86_64-linux-gnu
+  _make_ros_deb "px4-msgs"
   # Some of the following packages needs px4_msgs, so add it to the CMAKE paths
-  export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy
-  export px4_msgs_DIR=${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy/share/px4_msgs/cmake
-  echo "Done."
+  if [ -z "${CMAKE_PREFIX_PATH}" ]; then
+    export CMAKE_PREFIX_PATH=${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy
+  else
+    export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy
+  fi
 popd
 
-
 pushd ../ros2_ws/src/fog_msgs
-  echo "Creating deb package fog-msgs ..."
-  GIT_VER=0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
-  _execute_build
-  _move_debs
-  rm -rf obj-x86_64-linux-gnu
+  _make_ros_deb "fog_msgs"
   # Some of the following packages needs fog_msgs, so add it to the CMAKE paths
   export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-foxy-fog-msgs/opt/ros/foxy
-  export fog_msgs_DIR=${PWD}/debian/ros-foxy-fog-msgs/opt/ros/foxy/share/fog_msgs/cmake
-  echo "Done."
+popd
+
+pushd ../ros2_ws/src/px4_ros_com
+  _make_ros_deb "px4-ros-com"
+popd
+
+pushd ../ros2_ws/src/navigation
+  _make_ros_deb "navigation"
 popd
 
 pushd communication_link
-  ./package.sh
+  _make_deb communication_link
 popd
-mv ../ros2_ws/src/communication_link/communication-link*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
 pushd mission-engine
-  ./package.sh
+  _make_deb mission-engine
 popd
-mv ../ros2_ws/src/communication_link/mission-engine*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
 
-pushd ../ros2_ws/src/mesh_com/
-  echo "Creating deb package mesh-com ..."
-  GIT_VER=0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
-  build_dir=$(mktemp -d)
-  cp -r . ${build_dir}/package
-  pushd ${build_dir}/package/modules/mesh_com > /dev/null
-  _execute_build
-  _move_debs
-  popd > /dev/null
-  rm -rf ${build_dir}
-  echo "Done."
+pushd ../ros2_ws/src/mesh_com/modules/mesh_com
+  _make_ros_deb "mesh_com"
 popd
 
 pushd ../ros2_ws/src/depthai_ctrl
   _make_ros_deb "depthai-ctrl"
 popd
 
-pushd ../ros2_ws/src/px4_ros_com
-  _make_ros_deb "px4-ros-com"
-popd
 
 pushd ../ros2_ws/src/indoor_pos
   _make_ros_deb "indoor-pos"
@@ -187,5 +194,3 @@ popd
 pushd ../ros2_ws/src/mocap_pose
   _make_ros_deb "mocap-pose"
 popd
-
-exit 0
