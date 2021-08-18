@@ -17,6 +17,8 @@ SCRIPT_PATH=`dirname "$0"`
 SCRIPT_PATH=`( cd "$SCRIPT_PATH" && pwd )`
 DEBS_OUTPUT_DIR="deb_files"
 
+cd "${SCRIPT_PATH}"
+
 if [ ! -e ${DEBS_OUTPUT_DIR} ]; then
   mkdir ${DEBS_OUTPUT_DIR}
 fi
