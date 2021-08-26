@@ -14,4 +14,6 @@ params="-m $(realpath .) -v 2.0.0 -c $(git rev-parse HEAD) -g $(git log --date=f
 ./packaging/common/package.sh $params
 popd
 
+mv ../../ros2_ws/src/communication_link/*.deb ../
+
 exit 0

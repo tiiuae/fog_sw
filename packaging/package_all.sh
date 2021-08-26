@@ -83,16 +83,10 @@ EOF
   export PATH=$PATH:$PWD/scripts
 popd
 
-#pushd ../tools/libsurvive
-#  cat <<- EOF
-#  *********************************************************
-#  libsurvive build 
-#  *********************************************************
-#EOF
-#  cmake . 
-#  make all
-#  sudo make install
-#popd
+pushd libsurvive
+  _make_deb libsurvive
+  sudo dpkg -i ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/libsurvive_*.deb
+popd
 
 # Non-ROS packages
 pushd agent_protocol_splitter
@@ -148,10 +142,6 @@ pushd ../ros2_ws/src/px4_ros_com
   _make_ros_deb "px4-ros-com"
 popd
 
-pushd ../ros2_ws/src/navigation
-  _make_ros_deb "navigation"
-popd
-
 pushd communication_link
   _make_deb communication_link
 popd
@@ -167,7 +157,6 @@ popd
 pushd ../ros2_ws/src/depthai_ctrl
   _make_ros_deb "depthai-ctrl"
 popd
-
 
 pushd ../ros2_ws/src/indoor_pos
   _make_ros_deb "indoor-pos"
