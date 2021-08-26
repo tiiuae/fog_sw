@@ -9,4 +9,6 @@ params="-m $(realpath .) -v 1.0.0 -c $(git rev-parse HEAD) -g $(git log --date=f
 ./packaging/common/package.sh $params
 popd
 
+mv ../../mission-data-recorder/*.deb ../
+
 exit 0

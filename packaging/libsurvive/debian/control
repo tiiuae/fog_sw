@@ -1,0 +1,6 @@
+Package: libsurvive
+Version: VERSION
+Maintainer: Jari Nippula <jarix@ssrc.tii.ae>
+Architecture: amd64
+Depends:
+Description: Libraries for accessing lighthouse position data
