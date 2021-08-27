@@ -85,3 +85,6 @@
 [submodule "wpa"]
 	path = wpa
 	url = https://github.com/tiiuae/wpa.git
+[submodule "ros2_ws/src/update-agent"]
+	path = ros2_ws/src/update-agent
+	url = https://github.com/tiiuae/update-agent.git
