@@ -73,6 +73,7 @@ EOF
   echo "Done."
 }
 
+# Non-ROS packages
 pushd ../tools/Fast-DDS-Gen
   cat <<- EOF
   *********************************************************
@@ -88,7 +89,10 @@ pushd libsurvive
   sudo dpkg -i ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/libsurvive_*.deb
 popd
 
-# Non-ROS packages
+pushd rtl8812au
+  _make_deb rtl8812au
+popd
+
 pushd agent_protocol_splitter
   _make_deb agent_protocol_splitter
 popd

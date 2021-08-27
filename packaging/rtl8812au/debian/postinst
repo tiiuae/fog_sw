@@ -1,0 +1,13 @@
+#!/bin/bash
+
+KERNEL_VERSION=$(uname -r)
+KERNEL_KMOD_EXTRA_DIR=/lib/modules/${KERNEL_VERSION}/extra
+
+if [ ! -e ${KERNEL_KMOD_EXTRA_DIR} ]; then
+    mkdir -p ${KERNEL_KMOD_EXTRA_DIR}
+fi
+ln -s /opt/rtl8812au_kmod/8812au.ko ${KERNEL_KMOD_EXTRA_DIR}/8812au.ko
+
+/sbin/depmod -a ${KERNEL_VERSION}
+
+exit 0

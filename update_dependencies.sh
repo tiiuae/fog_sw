@@ -2,6 +2,9 @@
 
 set -euxo pipefail
 
+sudo sh -c 'echo "deb-src http://archive.ubuntu.com/ubuntu/ focal main restricted" >> /etc/apt/sources.list'
+sudo sh -c 'echo "deb-src http://archive.ubuntu.com/ubuntu/ focal-updates main restricted" >> /etc/apt/sources.list'
+
 echo "Update Ubuntu repository"
 sudo apt update
 
@@ -63,7 +66,20 @@ sudo apt install -y \
     ros-foxy-pcl-conversions \
     ros-foxy-pcl-msgs \
     ros-foxy-dynamic-edt-3d \
-    ros-foxy-gazebo-ros
+    ros-foxy-gazebo-ros \
+    kernel-package \
+    libncurses-dev \
+    gawk \
+    flex \
+    bison \
+    openssl \
+    libssl-dev \
+    libelf-dev \
+    libudev-dev \
+    libpci-dev \
+    libiberty-dev \
+    autoconf \
+    linux-headers-generic
 
 pip3 install --user pyros-genmsg
 
