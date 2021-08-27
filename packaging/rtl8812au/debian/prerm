@@ -1,0 +1,15 @@
+#!/bin/bash
+
+KERNEL_VERSION=$(uname -r)
+KERNEL_KMOD_EXTRA_DIR=/lib/modules/${KERNEL_VERSION}/extra
+
+rm -rf ${KERNEL_KMOD_EXTRA_DIR}/8812au.ko
+
+# Remove extra directory if it is empty.
+if [ ! "$(ls -A ${KERNEL_KMOD_EXTRA_DIR})" ]; then
+    rm -rf ${KERNEL_KMOD_EXTRA_DIR}
+fi
+
+/sbin/depmod -a ${KERNEL_VERSION}
+
+exit 0
