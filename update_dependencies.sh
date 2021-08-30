@@ -79,7 +79,13 @@ sudo apt install -y \
     libpci-dev \
     libiberty-dev \
     autoconf \
-    linux-headers-generic
+    linux-headers-generic \
+    dh-exec \
+    libdbus-1-dev \
+    libpcsclite-dev \
+    libnl-genl-3-dev \
+    libreadline-dev \
+    docbook-to-man
 
 pip3 install --user pyros-genmsg
 

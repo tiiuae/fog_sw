@@ -113,12 +113,9 @@ pushd systemd
   _make_deb systemd
 popd
 
-# TODO: fix the package_wpa.sh under wpa repo in order to work in local builds.
-# Local build does not have build directory so package_wpa.sh fails.
-#pushd wpasupplicant
-#  ./package.sh
-#popd
-#mv ./wpasupplicant*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
+pushd wpasupplicant
+  _make_deb wpasupplicant
+popd
 
 # ROS packages
 pushd ../ros2_ws/src/px4_msgs

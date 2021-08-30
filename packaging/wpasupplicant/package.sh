@@ -1,8 +1,10 @@
 #!/bin/bash
 
-pushd ../../wpa > /dev/null
-params="-m $(realpath .) -c $(git rev-parse HEAD) -g $(git log --date=format:%Y%m%d --pretty=~dirty~git%cd.%h -n 1) -b 0"
-./package_wpa.sh $params
-popd
+set -euxo pipefail
 
-exit 0
+THIS_DIR="$(dirname "$(readlink -f "$0")")"
+
+pushd "${THIS_DIR}"/../../ros2_ws/src/mesh_com/common/core/os/ubuntu/wpa_supplicant
+dpkg-buildpackage -rfakeroot -b
+mv ../wpasupplicant_*.deb "${THIS_DIR}/../deb_files"
+popd
