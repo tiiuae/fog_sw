@@ -33,6 +33,6 @@ cp "${THIS_DIR}"/rtl8812au.conf "${build_dir}"/etc/modules-load.d/rtl8812au.conf
 
 sed -i "s/VERSION/${version}/" "${build_dir}"/DEBIAN/control
 cat "${build_dir}"/DEBIAN/control
-fakeroot dpkg-deb --build "${build_dir}" "${THIS_DIR}"/../deb_files/rtl8812au_"${version}"_amd64.deb
+fakeroot dpkg-deb --build "${build_dir}" "${THIS_DIR}"/../deb_files/rtl8812au-kmod_"${version}"_amd64.deb
 
 rm -rf ${build_dir}
