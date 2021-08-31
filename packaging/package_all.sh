@@ -41,8 +41,8 @@ function _move_debs() {
 }
 
 function _execute_build() {
-#  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy --place-template-files
-  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy -i "${GIT_VER}"
+  local version=$1
+  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy -i "${version}"
   sed -i 's/^\tdh_shlibdeps.*/& --dpkg-shlibdeps-params=--ignore-missing-info/g' debian/rules
   fakeroot debian/rules clean
   fakeroot debian/rules "binary --parallel"
@@ -67,8 +67,8 @@ function _make_ros_deb() {
   Building ROS deb package ${pkg} 
   *********************************************************
 EOF
-  GIT_VER=0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
-  _execute_build
+  version=$(git log --date=format:%Y%m%d --pretty=git%cd.%h -n 1)
+  _execute_build "${version}"
   _move_debs
   echo "Done."
 }

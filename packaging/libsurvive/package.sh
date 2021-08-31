@@ -20,7 +20,7 @@ make_deb() {
 	mv usr ${build_dir}
 
 	pushd ../../tools/libsurvive
-	version=1.0.0-0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
+	version=1.0.0$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
 	echo ${version}
 	popd
 

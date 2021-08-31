@@ -6,7 +6,7 @@ THIS_DIR="$(dirname "$(readlink -f "$0")")"
 
 cd ../../rtl8812au
 
-version=1.0.0-0~dirty$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
+version=1.0.0$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
 apt-get source linux-hwe-5.8-source-5.8.0
 LINUX_SRC="${PWD}/linux-hwe-5.8-5.8.0"
 

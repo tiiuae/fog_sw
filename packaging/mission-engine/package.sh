@@ -10,7 +10,7 @@ export CGO_LDFLAGS="-L$(realpath ../px4_msgs/debian/ros-foxy-px4-msgs/opt/ros/fo
 mkdir -p missionengine/packaging/common
 cp -fR scripts/* missionengine/packaging/common/
 cd missionengine
-params="-m $(realpath .) -v 2.0.0 -c $(git rev-parse HEAD) -g $(git log --date=format:%Y%m%d --pretty=~dirty~git%cd.%h -n 1) -b 0"
+params="-m $(realpath .) -v 2.0.0 -c $(git rev-parse HEAD) -g $(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1) -b 0"
 ./packaging/common/package.sh $params
 popd
 
