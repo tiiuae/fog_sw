@@ -67,7 +67,7 @@ function _make_ros_deb() {
   Building ROS deb package ${pkg} 
   *********************************************************
 EOF
-  version=$(git log --date=format:%Y%m%d --pretty=git%cd.%h -n 1)
+  version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
   _execute_build "${version}"
   _move_debs
   echo "Done."

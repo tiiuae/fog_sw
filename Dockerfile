@@ -12,6 +12,11 @@ RUN rm /etc/apt/sources.list.d/ros2-latest.list && \
     echo "deb http://packages.ros.org/ros2/ubuntu focal main" > /etc/apt/sources.list.d/ros2-latest.list && \
     apt-get update
 
+RUN groupadd -g $GID builder && \
+    useradd -m -u $UID -g $GID -g builder builder && \
+    usermod -aG sudo builder && \
+    echo 'builder ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 WORKDIR /env
 
 COPY ./update_dependencies.sh ./rosdep.yaml /env/
@@ -19,10 +24,6 @@ COPY ./update_dependencies.sh ./rosdep.yaml /env/
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
     export DEBIAN_FRONTEND=noninteractive && \
     ./update_dependencies.sh
-
-RUN groupadd -g $GID builder && \
-    useradd -m -u $UID -g $GID -G sudo builder && \
-    echo 'builder ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER builder
 
