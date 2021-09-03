@@ -2,11 +2,17 @@
 
 set -euxo pipefail
 
+deb_revision=${1:-0~dirty}
+
 THIS_DIR="$(dirname "$(readlink -f "$0")")"
 
 cd ../../rtl8812au
 
-version=1.0.0$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
+upstream_version=1.0.0
+git_version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
+version="${upstream_version}-${deb_revision}${git_version}"
+echo ${version}
+
 apt-get source linux-hwe-5.8-source-5.8.0
 LINUX_SRC="${PWD}/linux-hwe-5.8-5.8.0"
 

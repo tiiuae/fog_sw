@@ -9,6 +9,24 @@ fi
 
 source /opt/ros/foxy/setup.bash
 
+# build types: development build, release candidate, release
+BUILD_TYPE=${1:-DEV}
+RELEASE=${2:-4.3}
+
+if [ "${BUILD_TYPE}" == "DEV" ];
+then
+  DEBIAN_REVISION="0~dirty"
+elif [ "${BUILD_TYPE}" == "RC" ];
+then
+  DEBIAN_REVISION="rc${RELEASE}"
+elif [ "${BUILD_TYPE}" == "REL" ];
+then
+  DEBIAN_REVISION="rel${RELEASE}"
+else
+  echo "ERROR: unsupported build type"
+  exit 1
+fi
+
 set -uxo pipefail
 
 # Get the path to this script.
@@ -55,7 +73,7 @@ function _make_deb() {
   Building deb package ${pkg} 
   *********************************************************
 EOF
-  ./package.sh
+  ./package.sh "${DEBIAN_REVISION}"
   _move_debs
   echo "Done."
 }
@@ -67,7 +85,7 @@ function _make_ros_deb() {
   Building ROS deb package ${pkg} 
   *********************************************************
 EOF
-  version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
+  local version="${DEBIAN_REVISION}$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)"
   _execute_build "${version}"
   _move_debs
   echo "Done."
@@ -86,7 +104,7 @@ popd
 
 pushd libsurvive
   _make_deb libsurvive
-  sudo dpkg -i ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/libsurvive_*.deb
+  dpkg -s libsurvive || sudo dpkg -i ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/libsurvive_*.deb
 popd
 
 pushd rtl8812au
