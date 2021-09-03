@@ -1,11 +1,6 @@
 #!/bin/bash
 
-get_version() {
-    pushd ../../mavlink-router
-    version=1.0.0$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
-    echo ${version}
-	popd
-}
+set -euxo pipefail
 
 build() {
 	pushd ../../mavlink-router
@@ -24,7 +19,14 @@ make_deb() {
 	cp debian/prerm ${build_dir}/DEBIAN/
 	mkdir -p ${build_dir}/etc/mavlink-router/
 	cp main.conf  ${build_dir}/etc/mavlink-router/
-	get_version
+
+	upstream_version=1.0.0
+	pushd ../../mavlink-router
+	git_version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
+	popd
+	version="${upstream_version}-${deb_revision}${git_version}"
+	echo ${version}
+
 	sed -i "s/VERSION/${version}/" ${build_dir}/DEBIAN/control
 #	cat ${build_dir}/DEBIAN/control
 	echo mavlink_router_${version}_amd64.deb
@@ -32,8 +34,8 @@ make_deb() {
 	echo "Done"
 }
 
+deb_revision=${1:-0~dirty}
 build_dir=$(mktemp -d)
-version=$(get_version)
 build
 make_deb
 rm -rf ${build_dir}

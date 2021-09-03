@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -euxo pipefail
 
 build() {
 		install=$PWD/usr
@@ -19,10 +19,12 @@ make_deb() {
 	cp debian/prerm ${build_dir}/DEBIAN/
 	mv usr ${build_dir}
 
+	upstream_version=1.0.0
 	pushd ../../tools/libsurvive
-	version=1.0.0$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
-	echo ${version}
+	git_version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
 	popd
+	version="${upstream_version}-${deb_revision}${git_version}"
+	echo ${version}
 
 	sed -i "s/VERSION/${version}/" ${build_dir}/DEBIAN/control
 	cat ${build_dir}/DEBIAN/control
@@ -31,5 +33,6 @@ make_deb() {
 	echo "Done"
 }
 
+deb_revision=${1:-0~dirty}
 build
 make_deb
