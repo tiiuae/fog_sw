@@ -64,9 +64,6 @@
 [submodule "tools/tmuxinator"]
 	path = tools/tmuxinator
 	url = https://github.com/tmuxinator/tmuxinator.git
-[submodule "ros2_ws/src/fog_msgs"]
-	path = ros2_ws/src/fog_msgs
-	url = https://github.com/tiiuae/fog_msgs.git
 [submodule "ros2_ws/src/control_interface"]
 	path = ros2_ws/src/control_interface
 	url = https://github.com/tiiuae/control_interface.git
