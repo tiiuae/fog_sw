@@ -82,3 +82,6 @@
 [submodule "wpa"]
 	path = wpa
 	url = https://github.com/tiiuae/wpa.git
+[submodule "fogsw_kernel_config"]
+	path = fogsw_kernel_config
+	url = https://github.com/tiiuae/fogsw_kernel_config.git
