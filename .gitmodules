@@ -85,3 +85,6 @@
 [submodule "fogsw_kernel_config"]
 	path = fogsw_kernel_config
 	url = https://github.com/tiiuae/fogsw_kernel_config.git
+[submodule "ros2_ws/src/fog_bumper"]
+	path = ros2_ws/src/fog_bumper
+	url = https://github.com/tiiuae/fog_bumper.git
