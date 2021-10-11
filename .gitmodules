@@ -88,3 +88,6 @@
 [submodule "ros2_ws/src/fog_bumper"]
 	path = ros2_ws/src/fog_bumper
 	url = https://github.com/tiiuae/fog_bumper.git
+[submodule "wifi-firmware"]
+	path = wifi-firmware
+	url = https://github.com/tiiuae/wifi-firmware.git
