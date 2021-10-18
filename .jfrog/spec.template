@@ -1,0 +1,143 @@
+{
+  "files": [
+    {
+      "pattern": "debian-public-local/agent-protocol-splitter_(*).deb",
+      "target": "packages/agent-protocol-splitter_{1}.deb",
+      "build": "agent-protocol-splitter/${agent_protocol_splitter}"
+    },
+    {
+      "pattern": "debian-public-local/fast-dds-gen_(*).deb",
+      "target": "packages/fast-dds-gen_{1}.deb",
+      "build": "fast-dds-gen/${tools/Fast-DDS-Gen}"
+    },
+    {
+      "pattern": "debian-public-local/communication-link_(*).deb",
+      "target": "packages/communication-link_{1}.deb",
+      "build": "communication-link/${ros2_ws/src/communication_link}"
+    },
+    {
+      "pattern": "debian-public-local/libsurvive_(*).deb",
+      "target": "packages/libsurvive_{1}.deb",
+      "build": "libsurvive/${tools/libsurvive}"
+    },
+    {
+      "pattern": "debian-public-local/mavlink-router_(*).deb",
+      "target": "packages/mavlink-router_{1}.deb",
+      "build": "mavlink-router/${mavlink-router}"
+    },
+    {
+      "pattern": "debian-public-local/mission-data-recorder_(*).deb",
+      "target": "packages/mission-data-recorder_{1}.deb",
+      "build": "mission-data-recorder/${mission-data-recorder}"
+    },
+    {
+      "pattern": "debian-public-local/mission-engine_(*).deb",
+      "target": "packages/mission-engine_{1}.deb",
+      "build": "mission-engine/${ros2_ws/src/communication_link}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-depthai-ctrl_(*).deb",
+      "target": "packages/ros-foxy-depthai-ctrl_{1}.deb",
+      "build": "depthai-ctrl/${ros2_ws/src/depthai_ctrl}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-indoor-pos_(*).deb",
+      "target": "packages/ros-foxy-indoor-pos_{1}.deb",
+      "build": "indoor-pos/${ros2_ws/src/indoor_pos}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-mesh-com_(*).deb",
+      "target": "packages/ros-foxy-mesh-com_{1}.deb",
+      "build": "mesh-com/${ros2_ws/src/mesh_com}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-mocap-pose_(*).deb",
+      "target": "packages/ros-foxy-mocap-pose_{1}.deb",
+      "build": "mocap-pose/${ros2_ws/src/mocap_pose}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-px4-msgs_(*).deb",
+      "target": "packages/ros-foxy-px4-msgs_{1}.deb",
+      "build": "px4-msgs/${ros2_ws/src/px4_msgs}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-px4-ros-com_(*).deb",
+      "target": "packages/ros-foxy-px4-ros-com_{1}.deb",
+      "build": "px4-ros-com/${ros2_ws/src/px4_ros_com}"
+    },
+    {
+      "pattern": "debian-public-local/rtl8812au-kmod_(*).deb",
+      "target": "packages/rtl8812au-kmod_{1}.deb",
+      "build": "rtl8812au-kmod/${rtl8812au}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-control-interface_(*).deb",
+      "target": "packages/ros-foxy-control-interface_{1}.deb",
+      "build": "control-interface/${ros2_ws/src/control_interface}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-fog-msgs_(*).deb",
+      "target": "packages/ros-foxy-fog-msgs_{1}.deb",
+      "build": "fog_msgs/${ros2_ws/src/fog_msgs}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-navigation_(*).deb",
+      "target": "packages/ros-foxy-navigation_{1}.deb",
+      "build": "navigation/${ros2_ws/src/navigation}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-octomap-server2_(*).deb",
+      "target": "packages/ros-foxy-octomap-server2_{1}.deb",
+      "build": "octomap-server2/${ros2_ws/src/octomap_server2}"
+    },
+    {
+      "pattern": "debian-public-local/ros-foxy-rplidar-ros2_(*).deb",
+      "target": "packages/ros-foxy-rplidar-ros2_{1}.deb",
+      "build": "rplidar_ros2/${ros2_ws/src/rplidar_ros2}"
+    },
+    {
+      "pattern": "debian-public-local/wpasupplicant_(*).deb",
+      "target": "packages/wpasupplicant_{1}.deb",
+      "build": "wpa/${wpa}"
+    },
+    {
+      "pattern": "debian-public-local/fog-sw-systemd-services_(*).deb",
+      "target": "packages/fog-sw-systemd-services_{1}.deb",
+      "build": "fogsw-systemd/${systemd}"
+    },
+    {
+      "pattern": "debian-public-local/fogsw-configs_(*).deb",
+      "target": "packages/fogsw-configs_{1}.deb",
+      "build": "fogsw-configs/${fogsw_configs}"
+    },
+    {
+      "pattern": "debian-public-local/linux-image-(*).deb",
+      "target": "packages/linux-image-{1}.deb",
+      "build": "fogsw-kernel-config/${fogsw_kernel_config}"
+    },
+    {
+      "pattern": "debian-private-local/ros-foxy-update-agent_(*).deb",
+      "target": "packages/ros-foxy-update-agent_{1}.deb",
+      "build": "update-agent/${ros2_ws/src/update-agent}"
+    },
+    {
+      "pattern": "debian-private-local/provisioning-agent_(*).deb",
+      "target": "packages/provisioning-agent_{1}.deb",
+      "build": "provisioning-agent/${provisioning-agent}"
+    },
+    {
+      "pattern": "debian-public-local/wifi-firmware_(*).deb",
+      "target": "packages/wifi-firmware_{1}.deb",
+      "build": "wifi-firmware/${wifi-firmware}"
+    },
+    {
+      "pattern": "debian-public-local/px4fwupdater_(*).deb",
+      "target": "packages/px4fwupdater_{1}.deb",
+      "build": "px4-fwupdater/7926ebbc3e8a82dbc61e8e64304cc0d8b4b3af7f"
+    },
+    {
+      "pattern": "debian-public-local/mavsdk_0.42.0_ubuntu20.04_amd64.deb",
+      "target": "packages/mavsdk_0.42.0_ubuntu20.04_amd64.deb"
+    }
+  ]
+}
