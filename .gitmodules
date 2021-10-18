@@ -85,3 +85,12 @@
 [submodule "fogsw_kernel_config"]
 	path = fogsw_kernel_config
 	url = https://github.com/tiiuae/fogsw_kernel_config.git
+[submodule "wifi-firmware"]
+	path = wifi-firmware
+	url = https://github.com/tiiuae/wifi-firmware.git
+[submodule "provisioning-agent"]
+	path = provisioning-agent
+	url = git@github.com:tiiuae/provisioning-agent.git
+[submodule "ros2_ws/src/update-agent"]
+	path = ros2_ws/src/update-agent
+	url = git@github.com:tiiuae/update-agent.git
