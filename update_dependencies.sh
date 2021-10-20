@@ -1,10 +1,17 @@
 #!/bin/bash
 
+set -euxo pipefail
+
+sudo sh -c 'echo "deb-src http://archive.ubuntu.com/ubuntu/ focal main restricted" >> /etc/apt/sources.list'
+sudo sh -c 'echo "deb-src http://archive.ubuntu.com/ubuntu/ focal-updates main restricted" >> /etc/apt/sources.list'
+
 echo "Update Ubuntu repository"
 sudo apt update
 
 echo "Install or refresh dependencies"
 sudo apt install -y \
+    curl \
+    wget \
     build-essential \
     dh-make debhelper \
     fakeroot \
@@ -53,12 +60,37 @@ sudo apt install -y \
     dh-python \
     batctl \
     alfred \
-    ros-foxy-gazebo-ros
+    ros-foxy-octomap \
+    ros-foxy-octomap-msgs \
+    ros-foxy-laser-geometry \
+    ros-foxy-pcl-conversions \
+    ros-foxy-pcl-msgs \
+    ros-foxy-dynamic-edt-3d \
+    ros-foxy-gazebo-ros \
+    kernel-package \
+    libncurses-dev \
+    gawk \
+    flex \
+    bison \
+    openssl \
+    libssl-dev \
+    libelf-dev \
+    libudev-dev \
+    libpci-dev \
+    libiberty-dev \
+    autoconf \
+    linux-headers-generic \
+    dh-exec \
+    libdbus-1-dev \
+    libpcsclite-dev \
+    libnl-genl-3-dev \
+    libreadline-dev \
+    docbook-to-man
 
 pip3 install --user pyros-genmsg
 
-wget https://github.com/mavlink/MAVSDK/releases/download/v0.34.0/mavsdk_0.34.0_ubuntu20.04_amd64.deb
-sudo dpkg -i mavsdk_0.34.0_ubuntu20.04_amd64.deb
+curl -LO https://artifactory.ssrc.fi:443/artifactory/debian-release-local/mavsdk_0.42.0_ubuntu20.04_amd64.deb
+sudo dpkg -i mavsdk_0.42.0_ubuntu20.04_amd64.deb
 
 echo "--- Generating /etc/ros/rosdep/sources.list.d/50-fogsw.list (as su)"
 sudo sh -c 'mkdir -p /etc/ros/rosdep/sources.list.d'

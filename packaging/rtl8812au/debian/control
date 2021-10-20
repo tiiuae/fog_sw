@@ -1,0 +1,7 @@
+Package: rtl8812au-kmod
+Version: VERSION
+Maintainer: Manuel Segarra-Abad <manuel.segarra-abad@unikie.com>
+Architecture: amd64
+Depends: linux-image-5.8.0-55-generic
+Description: TP-Link WLAN USB dongle driver
+ TP-Link WLAN USB dongle (rtl8812au) Linux kernel driver.
