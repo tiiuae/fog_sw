@@ -39,8 +39,8 @@ windows:
   - status:
       layout: tiled
       panes:
-        - 'history -s ros2 topic echo /VehicleStatus_PubSubTopic'
-        - 'history -s ros2 topic echo /VehicleCommandAck_PubSubTopic'
+        - 'history -s ros2 topic echo /fmu/vehicle_status/out'
+        - 'history -s ros2 topic echo /fmu/vehicle_command_ack/out'
   - goto:
       layout: even-vertical
       panes:
