@@ -1,5 +1,11 @@
 #!/bin/bash
 
+set -euo pipefail
+
+THISDIR="$(dirname "$(readlink -f "$0")")"
+
+cd "${THISDIR}"
+
 echo "Creating deb package linux-image..."
 build_dir=$(mktemp -d)
 
