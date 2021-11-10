@@ -113,3 +113,7 @@ popd
 pushd wpasupplicant
   _make_deb wpasupplicant
 popd
+
+pushd wifi-firmware
+  _make_deb wifi-firmware
+popd
