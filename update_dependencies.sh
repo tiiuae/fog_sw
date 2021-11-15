@@ -104,4 +104,6 @@ fi
 echo "--- Updating rosdep"
 rosdep update
 
+sudo apt-get upgrade -y
+
 exit 0

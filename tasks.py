@@ -40,7 +40,7 @@ def clone(c, public=True):
             submodules.remove('ros2_ws/src/mesh_com')
             c.run("git submodule update ros2_ws/src/mesh_com")
         for sub in submodules:
-            c.run("git submodule update --recursive %s" %sub)
+            c.run("git submodule update --init --recursive %s" %sub)
 
 @task(
     help={'nocache': "do not use cache when building the image",
