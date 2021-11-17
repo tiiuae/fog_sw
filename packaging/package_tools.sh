@@ -71,34 +71,16 @@ EOF
 }
 
 # Non-ROS packages
-pushd rtl8812au
-  _make_deb rtl8812au
+pushd ../tools/Fast-DDS-Gen
+  cat <<- EOF
+  *********************************************************
+  Fast-DDS-Gen build 
+  *********************************************************
+EOF
+  ./gradlew build
+  export PATH=$PATH:$PWD/scripts
 popd
 
-pushd agent_protocol_splitter
-  _make_deb agent_protocol_splitter
-popd
-
-pushd fogsw_configs
-  _make_deb fogsw_configs
-popd
-
-pushd mavlink-router
-  _make_deb mavlink-router
-popd
-
-pushd mission-data-recorder
-  _make_deb mission-data-recorder
-popd
-
-pushd systemd
-  _make_deb systemd
-popd
-
-pushd wpasupplicant
-  _make_deb wpasupplicant
-popd
-
-pushd wifi-firmware
-  _make_deb wifi-firmware
+pushd libsurvive
+  _make_deb libsurvive
 popd

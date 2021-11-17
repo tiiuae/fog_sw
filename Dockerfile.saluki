@@ -1,0 +1,38 @@
+# px4-firmware builder for PixHawk4
+FROM ros:foxy as px4-cross-builder
+
+ARG UID=1000
+ARG GID=1000
+
+ENV LANG C.UTF-8
+ENV LANGUAGE C.UTF-8
+ENV LC_ALL C.UTF-8
+
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git build-essential wget cmake lsb-core ninja-build \
+    python3-empy python3-toml python3-numpy python3-genmsg \
+    python3-packaging python3-jinja2 python3-yaml openjdk-11-jre \
+    genromfs xxd curl \
+    python3-nacl python3-pip \
+    && pip3 install kconfiglib jsonschema \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /tools
+
+WORKDIR tmp
+
+RUN curl -LOs https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.12/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz && \
+    tar xf riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz -C /tools
+
+ENV PATH=/tools/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14/bin:$PATH
+
+RUN groupadd -g $GID builder && \
+    useradd -m -u $UID -g $GID -g builder builder && \
+    usermod -aG sudo builder && \
+    echo 'builder ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER builder
+
+VOLUME /fog_sw
+WORKDIR /fog_sw

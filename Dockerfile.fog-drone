@@ -47,17 +47,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PX4 SITL
-# TODO: repplace with local px4 build
-RUN curl -fsSL https://ssrc.jfrog.io/artifactory/ssrc-gen-public-remote/builds/px4-firmware/sitl/latest/px4_sitl_build.tar.gz -o px4_sitl_build.tar.gz \
-    && tar -xzf px4_sitl_build.tar.gz \
+WORKDIR /tmp
+COPY packaging/px4_files/px4_sitl_build*.tar.gz px4_sitl_build.tar.gz
+RUN tar -xzf px4_sitl_build.tar.gz \
     && mv px4_sitl/build/px4_sitl_rtps/bin/* /usr/bin/ \
     && mv px4_sitl/build/px4_sitl_rtps/etc /px4_sitl_etc \
     && rm -rf px4_sitl_build/ \
     && rm px4_sitl_build.tar.gz
 
 ## FOG SOFTWARE
-
-WORKDIR /tmp
 COPY packaging/deb_files/ .
 RUN curl -LOs https://ssrc.jfrog.io/artifactory/ssrc-debian-release-remote/mavsdk_0.42.0_ubuntu20.04_amd64.deb && \
     apt-get install -y -f \

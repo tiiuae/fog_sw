@@ -88,3 +88,7 @@
 [submodule "ros2_ws/src/update-agent"]
 	path = ros2_ws/src/update-agent
 	url = ../update-agent.git
+	url = git@github.com:tiiuae/update-agent.git
+[submodule "px4-firmware"]
+	path = px4-firmware
+	url = ../px4-firmware.git

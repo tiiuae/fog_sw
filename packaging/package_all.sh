@@ -9,6 +9,7 @@ pushd "${THISDIR}/fogsw_kernel_config"
 popd
 
 pushd "${THISDIR}"
+./package_tools.sh "$@"
 ./package_sys.sh "$@"
 ./package_ros.sh "$@"
 popd
