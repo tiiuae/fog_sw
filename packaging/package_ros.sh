@@ -2,12 +2,12 @@
 
 set -e
 
-if [ ! -e /opt/ros/foxy/setup.bash ]; then
+if [ ! -e /opt/ros/galactic/setup.bash ]; then
   echo "ERROR: ROS2 environment cannot be found!"
   exit 1
 fi
 
-source /opt/ros/foxy/setup.bash
+source /opt/ros/galactic/setup.bash
 
 # build types: development build, release candidate, release
 BUILD_TYPE=${1:-DEV}
@@ -60,7 +60,7 @@ function _move_debs() {
 
 function _execute_build() {
   local version=$1
-  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy -i "${version}"
+  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro ${ROS_DISTRO} -i "${version}"
   sed -i 's/^\tdh_shlibdeps.*/& --dpkg-shlibdeps-params=--ignore-missing-info/g' debian/rules
   fakeroot debian/rules clean
   fakeroot debian/rules "binary --parallel"
@@ -112,16 +112,16 @@ pushd ../ros2_ws/src/px4_msgs
   _make_ros_deb "px4-msgs"
   # Some of the following packages needs px4_msgs, so add it to the CMAKE paths
   if [ -z "${CMAKE_PREFIX_PATH}" ]; then
-    export CMAKE_PREFIX_PATH=${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy
+    export CMAKE_PREFIX_PATH=${PWD}/debian/ros-${ROS_DISTRO}-px4-msgs/opt/ros/${ROS_DISTRO}
   else
-    export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy
+    export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-${ROS_DISTRO}-px4-msgs/opt/ros/${ROS_DISTRO}
   fi
 popd
 
 pushd ../ros2_ws/src/fog_msgs
   _make_ros_deb "fog_msgs"
   # Some of the following packages needs fog_msgs, so add it to the CMAKE paths
-  export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-foxy-fog-msgs/opt/ros/foxy
+  export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-${ROS_DISTRO}-fog-msgs/opt/ros/${ROS_DISTRO}
 popd
 
 pushd ../ros2_ws/src/px4_ros_com
