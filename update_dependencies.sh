@@ -1,5 +1,12 @@
 #!/bin/bash
 
+set -euxo pipefail
+
+ROS_DISTRO="galactic"
+
+sudo sh -c 'echo "deb-src http://archive.ubuntu.com/ubuntu/ focal main restricted" >> /etc/apt/sources.list'
+sudo sh -c 'echo "deb-src http://archive.ubuntu.com/ubuntu/ focal-updates main restricted" >> /etc/apt/sources.list'
+
 echo "Update Ubuntu repository"
 sudo apt update
 
@@ -18,13 +25,13 @@ sudo apt install -y \
     python3-pip \
     python3-future \
     python3-genmsg \
-    ros-foxy-ros-base \
+    ros-${ROS_DISTRO}-ros-base \
     libgstreamer1.0-0 \
     libgstreamer-plugins-base1.0-dev \
     libgstreamer-plugins-bad1.0-dev \
     libgstreamer-plugins-good1.0-dev \
     nlohmann-json3-dev \
-    ros-foxy-geodesy \
+    ros-${ROS_DISTRO}-geodesy \
     zlib1g-dev \
     libusb-1.0-0-dev \
     freeglut3-dev \
@@ -53,7 +60,32 @@ sudo apt install -y \
     dh-python \
     batctl \
     alfred \
-    ros-foxy-gazebo-ros
+    ros-${ROS_DISTRO}-octomap \
+    ros-${ROS_DISTRO}-octomap-msgs \
+    ros-${ROS_DISTRO}-laser-geometry \
+    ros-${ROS_DISTRO}-pcl-conversions \
+    ros-${ROS_DISTRO}-pcl-msgs \
+    ros-${ROS_DISTRO}-dynamic-edt-3d \
+    ros-${ROS_DISTRO}-gazebo-ros \
+    kernel-package \
+    libncurses-dev \
+    gawk \
+    flex \
+    bison \
+    openssl \
+    libssl-dev \
+    libelf-dev \
+    libudev-dev \
+    libpci-dev \
+    libiberty-dev \
+    autoconf \
+    linux-headers-generic \
+    dh-exec \
+    libdbus-1-dev \
+    libpcsclite-dev \
+    libnl-genl-3-dev \
+    libreadline-dev \
+    docbook-to-man
 
 pip3 install --user pyros-genmsg
 
@@ -62,7 +94,7 @@ sudo dpkg -i mavsdk_0.34.0_ubuntu20.04_amd64.deb
 
 echo "--- Generating /etc/ros/rosdep/sources.list.d/50-fogsw.list (as su)"
 sudo sh -c 'mkdir -p /etc/ros/rosdep/sources.list.d'
-sudo sh -c 'echo "yaml file://${PWD}/rosdep.yaml" > /etc/ros/rosdep/sources.list.d/50-fogsw.list'
+sudo sh -c 'echo "yaml file://${PWD}/rosdep_${ROS_DISTRO}.yaml" > /etc/ros/rosdep/sources.list.d/50-fogsw.list'
 
 if [ ! -e /etc/ros/rosdep/sources.list.d/20-default.list ]; then
 	echo "--- Initialize rosdep"

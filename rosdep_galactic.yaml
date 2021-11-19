@@ -1,0 +1,32 @@
+px4_msgs:
+  ubuntu: [ros-galactic-px4-msgs]
+
+mavsdk:
+  ubuntu: [mavsdk]
+
+survive:
+    ubuntu: [libsurvive]
+
+angles:
+    ubuntu: [ros-galactic-angles]
+
+geographic_msgs:
+    ubuntu: [ros-galactic-geographic-msgs]
+
+atlas3-base:
+    ubuntu: [libatlas3-base]
+
+lapacke:
+    ubuntu: [liblapacke]
+
+fog_msgs:
+  ubuntu: ros-galactic-fog-msgs
+
+dynamicEDT3D:
+  ubuntu: ros-galactic-dynamic-edt-3d
+
+pcl_conversions:
+    ubuntu: ros-galactic-pcl-conversions
+
+pcl_msgs:
+    ubuntu: ros-galactic-pcl-msgs
