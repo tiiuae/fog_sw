@@ -2,12 +2,12 @@
 
 set -e
 
-if [ ! -e /opt/ros/foxy/setup.bash ]; then
+if [ ! -e /opt/ros/galactic/setup.bash ]; then
   echo "ERROR: ROS2 environment cannot be found!"
   exit 1
 fi
 
-source /opt/ros/foxy/setup.bash
+source /opt/ros/galactic/setup.bash
 
 # build types: development build, release candidate, release
 BUILD_TYPE=${1:-DEV}

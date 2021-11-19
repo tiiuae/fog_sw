@@ -20,8 +20,8 @@ cd "${THIS_DIR}"/../../ros2_ws/src/communication_link
 # build depedency to px4_msgs
 export CGO_CFLAGS=
 export CGO_LDFLAGS=
-CGO_CFLAGS="-I$(realpath ../px4_msgs/debian/ros-foxy-px4-msgs/opt/ros/foxy/include/)"
-CGO_LDFLAGS="-L$(realpath ../px4_msgs/debian/ros-foxy-px4-msgs/opt/ros/foxy/lib/)"
+CGO_CFLAGS="-I$(realpath ../px4_msgs/debian/ros-galactic-px4-msgs/opt/ros/galactic/include/)"
+CGO_LDFLAGS="-L$(realpath ../px4_msgs/debian/ros-galactic-px4-msgs/opt/ros/galactic/lib/)"
 
 build_dir=$(mktemp -d)
 mkdir -p "${build_dir}"/DEBIAN

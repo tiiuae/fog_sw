@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /opt/ros/foxy/setup.bash
+source /opt/ros/galactic/setup.bash
 echo "Start Mavlink Router"
 mavlink-routerd >/fog-drone/mav_routerd_out.log 2>/fog-drone/mav_routerd_err.log &
 
