@@ -19,7 +19,7 @@ RUN groupadd -g $GID builder && \
 
 WORKDIR /env
 
-COPY ./update_dependencies.sh ./rosdep.yaml /env/
+COPY ./update_dependencies.sh ./rosdep*.yaml /env/
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
     export DEBIAN_FRONTEND=noninteractive && \
