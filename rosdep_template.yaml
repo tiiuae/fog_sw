@@ -1,0 +1,32 @@
+px4_msgs:
+  ubuntu: [ros-${ROS_DISTRO_}-px4-msgs]
+
+mavsdk:
+  ubuntu: [mavsdk]
+
+survive:
+    ubuntu: [libsurvive]
+
+angles:
+    ubuntu: [ros-${ROS_DISTRO_}-angles]
+
+geographic_msgs:
+    ubuntu: [ros-${ROS_DISTRO_}-geographic-msgs]
+
+atlas3-base:
+    ubuntu: [libatlas3-base]
+
+lapacke:
+    ubuntu: [liblapacke]
+
+fog_msgs:
+  ubuntu: ros-${ROS_DISTRO_}-fog-msgs
+
+dynamicEDT3D:
+  ubuntu: ros-${ROS_DISTRO_}-dynamic-edt-3d
+
+pcl_conversions:
+    ubuntu: ros-${ROS_DISTRO_}-pcl-conversions
+
+pcl_msgs:
+    ubuntu: ros-${ROS_DISTRO_}-pcl-msgs
