@@ -37,12 +37,6 @@
 [submodule "ros2_ws/src/slam/lidar_slam"]
 	path = ros2_ws/src/slam/lidar_slam
 	url = https://github.com/tiiuae/lidar_slam.git
-[submodule "ros2_ws/src/camera/camera_control"]
-	path = ros2_ws/src/camera/camera_control
-	url = https://github.com/tiiuae/camera_control.git
-[submodule "ros2_ws/src/camera/realsense-ros"]
-	path = ros2_ws/src/camera/realsense-ros
-	url = https://github.com/IntelRealSense/realsense-ros.git
 [submodule "fogsw_configs"]
 	path = fogsw_configs
 	url = https://github.com/tiiuae/fogsw_configs.git
