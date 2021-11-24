@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-ROS_DISTRO="galactic"
+ROS_DISTRO_="galactic"
 
 sudo sh -c 'echo "deb-src http://archive.ubuntu.com/ubuntu/ focal main restricted" >> /etc/apt/sources.list'
 sudo sh -c 'echo "deb-src http://archive.ubuntu.com/ubuntu/ focal-updates main restricted" >> /etc/apt/sources.list'
@@ -25,13 +25,13 @@ sudo apt install -y \
     python3-pip \
     python3-future \
     python3-genmsg \
-    ros-${ROS_DISTRO}-ros-base \
+    ros-${ROS_DISTRO_}-ros-base \
     libgstreamer1.0-0 \
     libgstreamer-plugins-base1.0-dev \
     libgstreamer-plugins-bad1.0-dev \
     libgstreamer-plugins-good1.0-dev \
     nlohmann-json3-dev \
-    ros-${ROS_DISTRO}-geodesy \
+    ros-${ROS_DISTRO_}-geodesy \
     zlib1g-dev \
     libusb-1.0-0-dev \
     freeglut3-dev \
@@ -60,13 +60,19 @@ sudo apt install -y \
     dh-python \
     batctl \
     alfred \
-    ros-${ROS_DISTRO}-octomap \
-    ros-${ROS_DISTRO}-octomap-msgs \
-    ros-${ROS_DISTRO}-laser-geometry \
-    ros-${ROS_DISTRO}-pcl-conversions \
-    ros-${ROS_DISTRO}-pcl-msgs \
-    ros-${ROS_DISTRO}-dynamic-edt-3d \
-    ros-${ROS_DISTRO}-gazebo-ros \
+    ros-${ROS_DISTRO_}-octomap \
+    ros-${ROS_DISTRO_}-octomap-msgs \
+    ros-${ROS_DISTRO_}-laser-geometry \
+    ros-${ROS_DISTRO_}-pcl-conversions \
+    ros-${ROS_DISTRO_}-pcl-msgs \
+    ros-${ROS_DISTRO_}-dynamic-edt-3d \
+    ros-${ROS_DISTRO_}-gazebo-ros \
+    ros-${ROS_DISTRO_}-rmw-dds-common \
+    ros-${ROS_DISTRO_}-rmw-fastrtps-cpp \
+    ros-${ROS_DISTRO_}-rmw-fastrtps-shared-cpp \
+    ros-${ROS_DISTRO_}-rmw-implementation \
+    ros-${ROS_DISTRO_}-rosidl-typesupport-fastrtps-cpp \
+    ros-${ROS_DISTRO_}-rosidl-typesupport-fastrtps-c \
     kernel-package \
     libncurses-dev \
     gawk \
@@ -92,9 +98,18 @@ pip3 install --user pyros-genmsg
 wget https://github.com/mavlink/MAVSDK/releases/download/v0.34.0/mavsdk_0.34.0_ubuntu20.04_amd64.deb
 sudo dpkg -i mavsdk_0.34.0_ubuntu20.04_amd64.deb
 
+# The following lines will make the substitution of ROS_DISTRO_ variable in rosdep_template.yaml.
+rm -rf rosdep.yaml tmp.yaml
+( echo "cat <<EOF >rosdep.yaml";
+  cat rosdep_template.yaml;
+  echo "EOF";
+) >tmp.yaml
+. tmp.yaml
+cat rosdep.yaml
+
 echo "--- Generating /etc/ros/rosdep/sources.list.d/50-fogsw.list (as su)"
 sudo sh -c 'mkdir -p /etc/ros/rosdep/sources.list.d'
-sudo sh -c 'echo "yaml file://${PWD}/rosdep_${ROS_DISTRO}.yaml" > /etc/ros/rosdep/sources.list.d/50-fogsw.list'
+sudo sh -c 'echo "yaml file://${PWD}/rosdep.yaml" > /etc/ros/rosdep/sources.list.d/50-fogsw.list'
 
 if [ ! -e /etc/ros/rosdep/sources.list.d/20-default.list ]; then
 	echo "--- Initialize rosdep"
