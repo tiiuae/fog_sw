@@ -12,6 +12,8 @@ sudo apt update
 
 echo "Install or refresh dependencies"
 sudo apt install -y \
+    curl \
+    wget \
     build-essential \
     dh-make debhelper \
     fakeroot \
@@ -118,5 +120,7 @@ fi
 
 echo "--- Updating rosdep"
 rosdep update
+
+sudo apt-get upgrade -y
 
 exit 0
