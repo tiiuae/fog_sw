@@ -102,10 +102,10 @@ EOF
   export PATH=$PATH:$PWD/scripts
 popd
 
-pushd libsurvive
-  _make_deb libsurvive
-  dpkg -s libsurvive || sudo dpkg -i ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/libsurvive_*.deb
-popd
+# pushd libsurvive
+#   _make_deb libsurvive
+#   dpkg -s libsurvive || sudo dpkg -i ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/libsurvive_*.deb
+# popd
 
 # ROS packages
 pushd ../ros2_ws/src/px4_msgs
