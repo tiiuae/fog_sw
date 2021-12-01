@@ -99,8 +99,8 @@ sudo apt install -y \
 
 pip3 install --user pyros-genmsg
 
-wget https://github.com/mavlink/MAVSDK/releases/download/v0.34.0/mavsdk_0.34.0_ubuntu20.04_amd64.deb
-sudo dpkg -i mavsdk_0.34.0_ubuntu20.04_amd64.deb
+wget https://ssrc.jfrog.io/artifactory/ssrc-debian-public-remote/mavsdk_0.42.0_ubuntu20.04_amd64.deb
+sudo dpkg -i mavsdk_0.42.0_ubuntu20.04_amd64.deb
 
 # The following lines will make the substitution of ROS_DISTRO_ variable in rosdep_template.yaml.
 rm -rf rosdep.yaml tmp.yaml
