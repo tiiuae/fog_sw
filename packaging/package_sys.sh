@@ -110,10 +110,10 @@ pushd systemd
   _make_deb systemd
 popd
 
-pushd wpasupplicant
-  _make_deb wpasupplicant
-popd
+#pushd wpasupplicant
+#  _make_deb wpasupplicant
+#popd
 
-pushd wifi-firmware
-  _make_deb wifi-firmware
-popd
+#pushd wifi-firmware
+#  _make_deb wifi-firmware
+#popd

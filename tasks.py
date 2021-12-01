@@ -83,21 +83,21 @@ def build_ros2(c):
     """
     Build fog-sw ROS2 modules
     """
-    c.run("docker run --rm -v %s:/fog_sw fogsw-builder /fog_sw/packaging/package_ros.sh" % THISDIR)
+    c.run("docker run --rm -v %s:/fog_sw fogsw-builder:galactic_rel5 /fog_sw/packaging/package_ros.sh" % THISDIR)
 
 @task(buildenv)
 def build_system(c):
     """
     Build drivers and other system components
     """
-    c.run("docker run --rm -v %s:/fog_sw fogsw-builder /fog_sw/packaging/package_sys.sh" % THISDIR)
+    c.run("docker run --rm -v %s:/fog_sw fogsw-builder:galactic_rel5 /fog_sw/packaging/package_sys.sh" % THISDIR)
 
 @task(buildenv)
 def build_kernel(c):
     """
     Build fog-sw kernel
     """
-    c.run("docker run --rm -v %s:/fog_sw fogsw-builder /fog_sw/packaging/fogsw_kernel_config/package.sh" % THISDIR)
+    c.run("docker run --rm -v %s:/fog_sw fogsw-builder:galactic_rel5 /fog_sw/packaging/fogsw_kernel_config/package.sh" % THISDIR)
 
 @task
 def build_private(c):
@@ -133,11 +133,9 @@ def build(c, public=True):
     """
     Build all fog-sw components (public or private).
     """
-    # build_kernel(c)
-    # build_system(c)
-    # build_ros2(c)
-
-    c.run("docker run --rm -v %s:/fog_sw fogsw-builder /fog_sw/packaging/package_all.sh" % THISDIR)
+    build_kernel(c)
+    build_system(c)
+    build_ros2(c)
 
     if not public:
         build_private(c)
