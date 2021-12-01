@@ -2,12 +2,12 @@
 
 set -e
 
-if [ ! -e /opt/ros/foxy/setup.bash ]; then
+if [ ! -e /opt/ros/galactic/setup.bash ]; then
   echo "ERROR: ROS2 environment cannot be found!"
   exit 1
 fi
 
-source /opt/ros/foxy/setup.bash
+source /opt/ros/galactic/setup.bash
 
 # Get the path to this script.
 SCRIPT_PATH=`dirname "$0"`
@@ -39,7 +39,7 @@ function _move_debs() {
 }
 
 function _execute_build() {
-  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy -i "${GIT_VER}"
+  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro galactic -i "${GIT_VER}"
   sed -i 's/^\tdh_shlibdeps.*/& --dpkg-shlibdeps-params=--ignore-missing-info/g' debian/rules
   fakeroot debian/rules clean
   fakeroot debian/rules "binary --parallel"
@@ -111,8 +111,8 @@ pushd ../ros2_ws/src/px4_msgs
   _move_debs
   rm -rf obj-x86_64-linux-gnu
   # Some of the following packages needs px4_msgs, so add it to the CMAKE paths
-  export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy
-  export px4_msgs_DIR=${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy/share/px4_msgs/cmake
+  export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-galactic-px4-msgs/opt/ros/galactic
+  export px4_msgs_DIR=${PWD}/debian/ros-galactic-px4-msgs/opt/ros/galactic/share/px4_msgs/cmake
   echo "Done."
 popd
 
@@ -124,8 +124,8 @@ pushd ../ros2_ws/src/fog_msgs
   _move_debs
   rm -rf obj-x86_64-linux-gnu
   # Some of the following packages needs fog_msgs, so add it to the CMAKE paths
-  export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-foxy-fog-msgs/opt/ros/foxy
-  export fog_msgs_DIR=${PWD}/debian/ros-foxy-fog-msgs/opt/ros/foxy/share/fog_msgs/cmake
+  export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-galactic-fog-msgs/opt/ros/galactic
+  export fog_msgs_DIR=${PWD}/debian/ros-galactic-fog-msgs/opt/ros/galactic/share/fog_msgs/cmake
   echo "Done."
 popd
 
