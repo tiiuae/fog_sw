@@ -89,7 +89,7 @@ sudo apt install -y \
 
 pip3 install --user pyros-genmsg
 
-curl -LO https://artifactory.ssrc.fi:443/artifactory/debian-release-local/mavsdk_0.42.0_ubuntu20.04_amd64.deb
+curl -LO https://ssrc.jfrog.io/artifactory/ssrc-debian-release-remote/mavsdk_0.42.0_ubuntu20.04_amd64.deb
 sudo dpkg -i mavsdk_0.42.0_ubuntu20.04_amd64.deb
 
 echo "--- Generating /etc/ros/rosdep/sources.list.d/50-fogsw.list (as su)"

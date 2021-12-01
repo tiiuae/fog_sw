@@ -48,7 +48,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install PX4 SITL
 # TODO: repplace with local px4 build
-RUN curl -fsSL https://artifactory.ssrc.fi:443/artifactory/gen-public-local/builds/px4-firmware/sitl/latest/px4_sitl_build.tar.gz -o px4_sitl_build.tar.gz \
+RUN curl -fsSL https://ssrc.jfrog.io/artifactory/ssrc-gen-public-remote/builds/px4-firmware/sitl/latest/px4_sitl_build.tar.gz -o px4_sitl_build.tar.gz \
     && tar -xzf px4_sitl_build.tar.gz \
     && mv px4_sitl/build/px4_sitl_rtps/bin/* /usr/bin/ \
     && mv px4_sitl/build/px4_sitl_rtps/etc /px4_sitl_etc \
@@ -59,7 +59,7 @@ RUN curl -fsSL https://artifactory.ssrc.fi:443/artifactory/gen-public-local/buil
 
 WORKDIR /tmp
 COPY packaging/deb_files/ .
-RUN curl -LOs https://artifactory.ssrc.fi:443/artifactory/debian-release-local/mavsdk_0.42.0_ubuntu20.04_amd64.deb && \
+RUN curl -LOs https://ssrc.jfrog.io/artifactory/ssrc-debian-release-remote/mavsdk_0.42.0_ubuntu20.04_amd64.deb && \
     apt-get install -y -f \
     ./mavsdk*.deb \
     ./ros-foxy-px4-msgs*.deb \
