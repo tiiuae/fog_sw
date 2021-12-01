@@ -72,6 +72,7 @@ sudo apt install -y \
     ros-${ROS_DISTRO_}-gazebo-ros \
     ros-${ROS_DISTRO_}-rmw-dds-common \
     ros-${ROS_DISTRO_}-rmw-fastrtps-cpp \
+    ros-${ROS_DISTRO_}-rmw-fastrtps-dynamic-cpp \
     ros-${ROS_DISTRO_}-rmw-fastrtps-shared-cpp \
     ros-${ROS_DISTRO_}-rmw-implementation \
     ros-${ROS_DISTRO_}-rosidl-typesupport-fastrtps-cpp \
