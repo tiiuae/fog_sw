@@ -133,9 +133,11 @@ def build(c, public=True):
     """
     Build all fog-sw components (public or private).
     """
-    build_kernel(c)
-    build_system(c)
-    build_ros2(c)
+    # build_kernel(c)
+    # build_system(c)
+    # build_ros2(c)
+
+    c.run("docker run --rm -v %s:/fog_sw fogsw-builder /fog_sw/packaging/package_all.sh" % THISDIR)
 
     if not public:
         build_private(c)
