@@ -1,5 +1,7 @@
 #!/bin/bash
 
+THIS_DIR="$(dirname "$(readlink -f "$0")")"
+
 if ! go version > /dev/null 2>&1; then
   export PATH=$PATH:/usr/lib/go-1.16/bin/
 fi
