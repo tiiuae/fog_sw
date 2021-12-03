@@ -103,8 +103,13 @@ pushd mavlink-router
 popd
 
 pushd mission-data-recorder
-  _make_deb mission-data-recorder
+  ./package.sh
 popd
+mv ../mission-data-recorder/mission-data-recorder*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
+
+# pushd mission-data-recorder
+#   _make_deb mission-data-recorder
+# popd
 
 pushd systemd
   _make_deb systemd
