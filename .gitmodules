@@ -1,57 +1,57 @@
 [submodule "agent_protocol_splitter"]
 	path = agent_protocol_splitter
-	url = https://github.com/tiiuae/agent_protocol_splitter.git
+	url = ../agent_protocol_splitter.git
 [submodule "ros2_ws/src/px4_msgs"]
 	path = ros2_ws/src/px4_msgs
-	url = https://github.com/tiiuae/PX4-msgs.git
+	url = ../PX4-msgs.git
 [submodule "ros2_ws/src/px4_ros_com"]
 	path = ros2_ws/src/px4_ros_com
-	url = https://github.com/tiiuae/px4_ros_com.git
+	url = ../px4_ros_com.git
 [submodule "mavlink-router"]
 	path = mavlink-router
-	url = https://github.com/tiiuae/mavlink-router.git
+	url = ../mavlink-router.git
 [submodule "ros2_ws/src/communication_link"]
 	path = ros2_ws/src/communication_link
-	url = https://github.com/tiiuae/communication_link.git
+	url = ../communication_link.git
 [submodule "tools/libsurvive"]
 	path = tools/libsurvive
-	url = https://github.com/tiiuae/libsurvive.git
+	url = ../libsurvive.git
 [submodule "ros2_ws/src/indoor_pos"]
 	path = ros2_ws/src/indoor_pos
-	url = https://github.com/tiiuae/indoor_pos.git
+	url = ../indoor_pos.git
 [submodule "ros2_ws/src/depthai_ctrl"]
 	path = ros2_ws/src/depthai_ctrl
-	url = https://github.com/tiiuae/depthai_ctrl.git
+	url = ../depthai_ctrl.git
 [submodule "ros2_ws/src/mesh_com"]
 	path = ros2_ws/src/mesh_com
-	url = https://github.com/tiiuae/mesh_com.git
+	url = ../mesh_com.git
 [submodule "tools/Fast-DDS-Gen"]
 	path = tools/Fast-DDS-Gen
-	url = https://github.com/tiiuae/Fast-DDS-Gen.git
+	url = ../Fast-DDS-Gen.git
 [submodule "systemd"]
 	path = systemd
-	url = https://github.com/tiiuae/fogsw_systemd.git
+	url = ../fogsw_systemd.git
 [submodule "fogsw_secure_os"]
 	path = fogsw_secure_os
-	url = https://github.com/tiiuae/fogsw_secure_os.git
+	url = ../fogsw_secure_os.git
 [submodule "ros2_ws/src/slam/lidar_slam"]
 	path = ros2_ws/src/slam/lidar_slam
-	url = https://github.com/tiiuae/lidar_slam.git
+	url = ../lidar_slam.git
 [submodule "fogsw_configs"]
 	path = fogsw_configs
-	url = https://github.com/tiiuae/fogsw_configs.git
+	url = ../fogsw_configs.git
 [submodule "ros2_ws/src/fog_msgs"]
 	path = ros2_ws/src/fog_msgs
-	url = https://github.com/tiiuae/fog_msgs.git
+	url = ../fog_msgs.git
 [submodule "ros2_ws/src/octomap_server2"]
 	path = ros2_ws/src/octomap_server2
-	url = https://github.com/tiiuae/octomap_server2.git
+	url = ../octomap_server2.git
 [submodule "ros2_ws/src/navigation"]
 	path = ros2_ws/src/navigation
-	url = https://github.com/tiiuae/navigation.git
+	url = ../navigation.git
 [submodule "ros2_ws/src/rplidar_ros2"]
 	path = ros2_ws/src/rplidar_ros2
-	url = https://github.com/tiiuae/rplidar_ros2.git
+	url = ../rplidar_ros2.git
 [submodule "tools/tmux"]
 	path = tools/tmux
 	url = https://github.com/tmux/tmux.git
@@ -60,31 +60,31 @@
 	url = https://github.com/tmuxinator/tmuxinator.git
 [submodule "ros2_ws/src/control_interface"]
 	path = ros2_ws/src/control_interface
-	url = https://github.com/tiiuae/control_interface.git
+	url = ../control_interface.git
 [submodule "rtl8812au"]
 	path = rtl8812au
-	url = https://github.com/tiiuae/rtl8812au.git
+	url = ../rtl8812au.git
 [submodule "ros2_ws/src/fog_gazebo_resources"]
 	path = ros2_ws/src/fog_gazebo_resources
-	url = https://github.com/tiiuae/fog_gazebo_resources.git
+	url = ../fog_gazebo_resources.git
 [submodule "mission-data-recorder"]
 	path = mission-data-recorder
-	url = https://github.com/tiiuae/mission-data-recorder.git
+	url = ../mission-data-recorder.git
 [submodule "ros2_ws/src/mocap_pose"]
 	path = ros2_ws/src/mocap_pose
-	url = https://github.com/tiiuae/mocap_pose.git
+	url = ../mocap_pose.git
 [submodule "wpa"]
 	path = wpa
-	url = https://github.com/tiiuae/wpa.git
+	url = ../wpa.git
 [submodule "fogsw_kernel_config"]
 	path = fogsw_kernel_config
-	url = https://github.com/tiiuae/fogsw_kernel_config.git
+	url = ../fogsw_kernel_config.git
 [submodule "wifi-firmware"]
 	path = wifi-firmware
-	url = https://github.com/tiiuae/wifi-firmware.git
+	url = ../wifi-firmware.git
 [submodule "provisioning-agent"]
 	path = provisioning-agent
-	url = git@github.com:tiiuae/provisioning-agent.git
+	url = ../provisioning-agent.git
 [submodule "ros2_ws/src/update-agent"]
 	path = ros2_ws/src/update-agent
-	url = git@github.com:tiiuae/update-agent.git
+	url = ../update-agent.git
