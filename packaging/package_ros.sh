@@ -144,6 +144,14 @@ pushd ../ros2_ws/src/depthai_ctrl
   _make_ros_deb "depthai-ctrl"
 popd
 
+pushd ../ros2_ws/src/odometry2
+  _make_ros_deb "odometry2"
+popd
+
+pushd ../ros2_ws/src/fog_bumper
+  _make_ros_deb "fog-bumper"
+popd
+
 pushd ../ros2_ws/src/indoor_pos
   _make_ros_deb "indoor-pos"
 popd

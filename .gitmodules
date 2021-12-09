@@ -94,3 +94,6 @@
 [submodule "ros2_ws/src/fog_bumper"]
 	path = ros2_ws/src/fog_bumper
 	url = ../fog_bumper.git
+[submodule "fogsw_tools"]
+	path = fogsw_tools
+	url = ../fogsw_tools.git

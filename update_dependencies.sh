@@ -30,6 +30,7 @@ sudo apt install -y \
     libgstreamer-plugins-base1.0-dev \
     libgstreamer-plugins-bad1.0-dev \
     libgstreamer-plugins-good1.0-dev \
+    libgstrtspserver-1.0-dev \
     nlohmann-json3-dev \
     ros-foxy-geodesy \
     zlib1g-dev \

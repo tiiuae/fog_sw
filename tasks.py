@@ -91,6 +91,9 @@ def build_system(c):
     Build drivers and other system components
     """
     c.run("docker run --rm -v %s:/fog_sw fogsw-builder /fog_sw/packaging/package_sys.sh" % THISDIR)
+    
+    with c.cd("%s/fogsw_tools" % THISDIR):
+        c.run("./build.sh %s/packaging/deb_files" % THISDIR)
 
 @task(buildenv)
 def build_kernel(c):
@@ -98,6 +101,7 @@ def build_kernel(c):
     Build fog-sw kernel
     """
     c.run("docker run --rm -v %s:/fog_sw fogsw-builder /fog_sw/packaging/fogsw_kernel_config/package.sh" % THISDIR)
+    # fogsw-tools
 
 @task
 def build_private(c):
