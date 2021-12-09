@@ -88,3 +88,6 @@
 [submodule "ros2_ws/src/update-agent"]
 	path = ros2_ws/src/update-agent
 	url = ../update-agent.git
+[submodule "ros2_ws/src/odometry2"]
+	path = ros2_ws/src/odometry2
+	url = ../odometry2.git
