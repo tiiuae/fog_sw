@@ -88,3 +88,6 @@
 [submodule "ros2_ws/src/update-agent"]
 	path = ros2_ws/src/update-agent
 	url = ../update-agent.git
+[submodule "fogsw_tools"]
+	path = fogsw_tools
+	url = ../fogsw_tools.git
