@@ -34,9 +34,6 @@
 [submodule "fogsw_secure_os"]
 	path = fogsw_secure_os
 	url = ../fogsw_secure_os.git
-[submodule "ros2_ws/src/slam/lidar_slam"]
-	path = ros2_ws/src/slam/lidar_slam
-	url = ../lidar_slam.git
 [submodule "fogsw_configs"]
 	path = fogsw_configs
 	url = ../fogsw_configs.git
