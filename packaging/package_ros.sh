@@ -6,7 +6,7 @@ if [ ! -e /opt/ros/galactic/setup.bash ]; then
   echo "ERROR: ROS2 environment cannot be found!"
   exit 1
 fi
-
+#RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 source /opt/ros/galactic/setup.bash
 
 # build types: development build, release candidate, release
@@ -34,11 +34,16 @@ CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH:-}
 SCRIPT_PATH=`dirname "$0"`
 SCRIPT_PATH=`( cd "$SCRIPT_PATH" && pwd )`
 DEBS_OUTPUT_DIR="deb_files"
+DDEBS_OUTPUT_DIR="ddeb_files"
 
 cd "${SCRIPT_PATH}"
 
 if [ ! -e ${DEBS_OUTPUT_DIR} ]; then
   mkdir ${DEBS_OUTPUT_DIR}
+fi
+
+if [ ! -e ${DDEBS_OUTPUT_DIR} ]; then
+  mkdir ${DDEBS_OUTPUT_DIR}
 fi
 
 if [ ! -e /usr/lib/go-1.16/bin/ ] ; then
@@ -55,6 +60,9 @@ export DEB_BUILD_OPTIONS="parallel=`nproc`"
 function _move_debs() {
   if ls ../*.deb 1> /dev/null 2>&1; then
     mv ../*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
+  fi
+  if ls ../*.ddeb 1> /dev/null 2>&1; then
+    mv ../*.ddeb ${SCRIPT_PATH}/${DDEBS_OUTPUT_DIR}/
   fi
 }
 
