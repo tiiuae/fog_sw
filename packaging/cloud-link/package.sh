@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-upstream_version=2.0.0
+upstream_version=$(git describe --tags HEAD --abbrev=0 --match='v*' | tail -c+2)
 deb_revision=${1:-0~dirty}
 git_version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
 git_commit_hash=$(git rev-parse HEAD)
