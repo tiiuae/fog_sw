@@ -3,6 +3,7 @@
 set -euxo pipefail
 
 ROS_DISTRO_="galactic"
+GO_VERSION=1.17.5
 
 sudo sh -c 'echo "deb-src http://archive.ubuntu.com/ubuntu/ focal main restricted" >> /etc/apt/sources.list'
 sudo sh -c 'echo "deb-src http://archive.ubuntu.com/ubuntu/ focal-updates main restricted" >> /etc/apt/sources.list'
@@ -18,7 +19,6 @@ sudo apt install -y \
     dh-make debhelper \
     fakeroot \
     git-core \
-    golang-1.16-go \
     libasio-dev \
     openjdk-11-jdk-headless \
     openssh-client \
@@ -95,6 +95,9 @@ sudo apt install -y \
     libnl-genl-3-dev \
     libreadline-dev \
     docbook-to-man
+
+curl -L https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz \
+| tar -xzC /usr/local
 
 pip3 install --user pyros-genmsg
 

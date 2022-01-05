@@ -8,6 +8,7 @@ if [ ! -e /opt/ros/galactic/setup.bash ]; then
 fi
 #RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 source /opt/ros/galactic/setup.bash
+export PATH="/usr/local/go/bin:$PATH"
 
 # build types: development build, release candidate, release
 BUILD_TYPE=${1:-DEV}
@@ -46,9 +47,10 @@ if [ ! -e ${DDEBS_OUTPUT_DIR} ]; then
   mkdir ${DDEBS_OUTPUT_DIR}
 fi
 
-if [ ! -e /usr/lib/go-1.16/bin/ ] ; then
-    echo "ERROR: missing golang v1.16!"
-    echo "Install golang v1.16 package: golang-1.16-go."
+if ! go version > /dev/null 2>&1; then
+    echo "ERROR: missing Go!"
+    echo "Install Go from https://go.dev/dl"
+    echo "and ensure that the Go tool is in PATH."
     exit 1
 fi
 
