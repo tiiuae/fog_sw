@@ -65,7 +65,7 @@ RUN curl -LOs https://ssrc.jfrog.io/artifactory/ssrc-debian-release-remote/mavsd
     apt-get install -y -f \
     ./mavsdk*.deb \
     ./ros-${ROS_DISTRO}-px4-msgs*.deb \
-    ./communication-link*.deb \
+    ./cloud-link*.deb \
     ./mavlink-router*.deb \
     ./ros-${ROS_DISTRO}-px4-ros-com*.deb \
     ./mission-engine*.deb \
