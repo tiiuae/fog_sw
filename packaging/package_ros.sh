@@ -146,6 +146,10 @@ pushd mission-engine
   _make_deb mission-engine
 popd
 
+pushd mission-data-recorder
+  _make_deb mission-data-recorder
+popd
+
 pushd ../ros2_ws/src/mesh_com/modules/mesh_com
   _make_ros_deb "mesh_com"
 popd

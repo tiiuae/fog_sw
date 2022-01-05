@@ -62,7 +62,7 @@
 	path = ros2_ws/src/fog_gazebo_resources
 	url = ../fog_gazebo_resources.git
 [submodule "mission-data-recorder"]
-	path = mission-data-recorder
+	path = ros2_ws/src/mission-data-recorder
 	url = ../mission-data-recorder.git
 [submodule "ros2_ws/src/mocap_pose"]
 	path = ros2_ws/src/mocap_pose
@@ -97,3 +97,6 @@
 [submodule "ros2_ws/src/mission-engine"]
 	path = ros2_ws/src/mission-engine
 	url = ../mission-engine.git
+[submodule "ros2_ws/src/mission-data-recorder"]
+	path = ros2_ws/src/mission-data-recorder
+	url = ../mission-data-recorder.git

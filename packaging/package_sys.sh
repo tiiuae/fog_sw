@@ -104,10 +104,6 @@ pushd mavlink-router
   _make_deb mavlink-router
 popd
 
-pushd mission-data-recorder
-  _make_deb mission-data-recorder
-popd
-
 pushd systemd
   _make_deb systemd
 popd

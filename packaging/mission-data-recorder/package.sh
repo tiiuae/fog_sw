@@ -15,13 +15,14 @@ if ! go version > /dev/null 2>&1; then
   export PATH="/usr/local/go/bin:$PATH"
 fi
 
-cd "${THIS_DIR}"/../../mission-data-recorder
+cd "${THIS_DIR}"/../../ros2_ws/src/mission-data-recorder
 
 build_dir=$(mktemp -d)
 mkdir -p "${build_dir}"/DEBIAN
 mkdir -p "${build_dir}"/usr/bin/
 
 cp ./packaging/debian/* "${build_dir}"/DEBIAN/
+go generate ./...
 go build -o mission-data-recorder
 cp -f mission-data-recorder "${build_dir}"/usr/bin/
 
