@@ -15,7 +15,7 @@ if ! go version > /dev/null 2>&1; then
   export PATH="/usr/local/go/bin:$PATH"
 fi
 
-cd "${THIS_DIR}"/../../ros2_ws/src/communication_link
+cd "${THIS_DIR}"/../../ros2_ws/src/cloud-link
 
 # build depedency to px4_msgs
 export CGO_CFLAGS=
@@ -27,11 +27,10 @@ build_dir=$(mktemp -d)
 mkdir -p "${build_dir}"/DEBIAN
 mkdir -p "${build_dir}"/usr/bin/
 
-pushd communicationlink
 cp ./packaging/debian/* "${build_dir}"/DEBIAN/
-go build -o communication_link
-cp -f communication_link ${build_dir}/usr/bin/
-popd
+go generate ./...
+go build -o cloud-link
+cp -f cloud-link ${build_dir}/usr/bin/
 
 
 sed -i "s/VERSION/${version}/" "${build_dir}"/DEBIAN/control

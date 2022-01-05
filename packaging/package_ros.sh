@@ -138,8 +138,8 @@ pushd ../ros2_ws/src/px4_ros_com
   _make_ros_deb "px4-ros-com"
 popd
 
-pushd communication_link
-  _make_deb communication_link
+pushd cloud-link
+  _make_deb cloud-link
 popd
 
 pushd mission-engine

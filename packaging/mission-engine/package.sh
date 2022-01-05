@@ -15,7 +15,7 @@ if ! go version > /dev/null 2>&1; then
   export PATH="/usr/local/go/bin:$PATH"
 fi
 
-cd "${THIS_DIR}"/../../ros2_ws/src/communication_link
+cd "${THIS_DIR}"/../../ros2_ws/src/mission-engine
 
 export CGO_CFLAGS=
 export CGO_LDFLAGS=
@@ -29,12 +29,11 @@ CGO_LDFLAGS="${CGO_LDFLAGS} -L$(realpath ../fog_msgs/debian/ros-galactic-fog-msg
 build_dir=$(mktemp -d)
 mkdir -p "${build_dir}"/DEBIAN
 mkdir -p "${build_dir}"/usr/bin/
-cp ./missionengine/packaging/debian/* "${build_dir}"/DEBIAN/
+cp ./packaging/debian/* "${build_dir}"/DEBIAN/
 
-pushd ./missionengine/cmd
-go build -o mission-engine
+go generate ./...
+go build -o mission-engine ./cmd
 cp -f mission-engine "${build_dir}"/usr/bin/
-popd
 
 sed -i "s/VERSION/${version}/" "${build_dir}"/DEBIAN/control
 cat "${build_dir}"/DEBIAN/control

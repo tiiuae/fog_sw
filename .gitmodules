@@ -10,9 +10,6 @@
 [submodule "mavlink-router"]
 	path = mavlink-router
 	url = ../mavlink-router.git
-[submodule "ros2_ws/src/communication_link"]
-	path = ros2_ws/src/communication_link
-	url = ../communication_link.git
 [submodule "tools/libsurvive"]
 	path = tools/libsurvive
 	url = ../libsurvive.git
@@ -94,3 +91,9 @@
 [submodule "fogsw_tools"]
 	path = fogsw_tools
 	url = ../fogsw_tools.git
+[submodule "ros2_ws/src/cloud-link"]
+	path = ros2_ws/src/cloud-link
+	url = ../cloud-link.git
+[submodule "ros2_ws/src/mission-engine"]
+	path = ros2_ws/src/mission-engine
+	url = ../mission-engine.git
