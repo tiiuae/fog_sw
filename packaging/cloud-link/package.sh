@@ -6,7 +6,7 @@ upstream_version=$(git describe --tags HEAD --abbrev=0 --match='v*' | tail -c+2)
 deb_revision=${1:-0~dirty}
 git_version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
 git_commit_hash=$(git rev-parse HEAD)
-version="${upstream_version}-${deb_revision}${git_version}"
+version="${deb_revision}${git_version}"
 echo "version: ${version}"
 
 THIS_DIR="$(dirname "$(readlink -f "$0")")"
@@ -28,7 +28,11 @@ mkdir -p "${build_dir}"/DEBIAN
 mkdir -p "${build_dir}"/usr/bin/
 
 cp ./packaging/debian/* "${build_dir}"/DEBIAN/
+PX4_PATH="../px4_msgs/debian/ros-galactic-px4-msgs/opt/ros/galactic"
+FOG_PATH="../fog_msgs/debian/ros-galactic-fog-msgs/opt/ros/galactic"
 go generate ./...
+go run github.com/tiiuae/rclgo/cmd/rclgo-gen generate -d msgs -r ${PX4_PATH} ./...
+go run github.com/tiiuae/rclgo/cmd/rclgo-gen generate -d msgs -r ${FOG_PATH} ./...
 go build -o cloud-link
 cp -f cloud-link ${build_dir}/usr/bin/
 
