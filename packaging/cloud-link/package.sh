@@ -2,13 +2,6 @@
 
 set -euxo pipefail
 
-upstream_version=$(git describe --tags HEAD --abbrev=0 --match='v*' | tail -c+2)
-deb_revision=${1:-0~dirty}
-git_version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
-git_commit_hash=$(git rev-parse HEAD)
-version="${deb_revision}${git_version}"
-echo "version: ${version}"
-
 THIS_DIR="$(dirname "$(readlink -f "$0")")"
 
 if ! go version > /dev/null 2>&1; then
@@ -16,6 +9,15 @@ if ! go version > /dev/null 2>&1; then
 fi
 
 cd "${THIS_DIR}"/../../ros2_ws/src/cloud-link
+
+upstream_version=$(git describe --tags HEAD --abbrev=0 --match='v[0-9]*' --always)
+deb_revision=${1:-0~dirty}
+git_version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
+git_commit_hash=$(git rev-parse HEAD)
+[ "${upstream_version}" = "${git_commit_hash}" ] && upstream_version="v0.0.0"
+upstream_version=$(echo ${upstream_version} | tail -c+2)
+version="${upstream_version}-${deb_revision}${git_version}"
+echo "version: ${version}"
 
 # build depedency to px4_msgs
 export CGO_CFLAGS=
