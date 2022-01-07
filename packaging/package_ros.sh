@@ -108,7 +108,12 @@ pushd libsurvive
 popd
 
 # ROS packages
+
+echo "DEB_BUILD_OPTIONS before px4_msgs: $DEB_BUILD_OPTIONS"
+
 pushd ../ros2_ws/src/px4_msgs
+   deb_build_options=${DEB_BUILD_OPTIONS}
+  export DEB_BUILD_OPTIONS="parallel=`nproc` nocheck"
   _make_ros_deb "px4-msgs"
   # Some of the following packages needs px4_msgs, so add it to the CMAKE paths
   if [ -z "${CMAKE_PREFIX_PATH}" ]; then
@@ -116,7 +121,11 @@ pushd ../ros2_ws/src/px4_msgs
   else
     export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy
   fi
+  export DEB_BUILD_OPTIONS=${deb_build_options}
 popd
+
+echo "DEB_BUILD_OPTIONS after px4_msgs: $DEB_BUILD_OPTIONS"
+
 
 pushd ../ros2_ws/src/fog_msgs
   _make_ros_deb "fog_msgs"
