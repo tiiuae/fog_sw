@@ -113,7 +113,10 @@ def build_private(c):
         c.run("./build.sh %s/packaging/deb_files" % THISDIR)
     # update-agent
     with c.cd("%s/ros2_ws/src/update-agent" % THISDIR):
-        c.run("./build.sh %s/packaging/deb_files" % THISDIR)
+        c.run("ROS_DISTRO=galactic ./build.sh %s/packaging/deb_files" % THISDIR)
+    if not os.path.isdir('%s/packaging/ddeb_files' % THISDIR):
+        os.mkdir('%s/packaging/ddeb_files' % THISDIR)
+    c.run("mv %s/packaging/deb_files/ros-*update-agent*.ddeb %s/packaging/ddeb_files/" % (THISDIR, THISDIR))
 
 @task(
     help={'tag': "fog-drone docker image tag"}
