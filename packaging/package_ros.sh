@@ -119,7 +119,7 @@ popd
 
 # ROS packages
 pushd ../ros2_ws/src/px4_msgs
-  _make_ros_deb "px4-msgs"
+  #_make_ros_deb "px4-msgs"
   # Some of the following packages needs px4_msgs, so add it to the CMAKE paths
   if [ -z "${CMAKE_PREFIX_PATH}" ]; then
     export CMAKE_PREFIX_PATH=${PWD}/debian/ros-${ROS_DISTRO}-px4-msgs/opt/ros/${ROS_DISTRO}
