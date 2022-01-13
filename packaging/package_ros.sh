@@ -162,9 +162,9 @@ popd
 #   _make_ros_deb "odometry2"
 # popd
 # 
-# pushd ../ros2_ws/src/fog_bumper
-#   _make_ros_deb "fog-bumper"
-# popd
+pushd ../ros2_ws/src/fog_bumper
+  _make_ros_deb "fog-bumper"
+popd
 
 pushd ../ros2_ws/src/indoor_pos
   _make_ros_deb "indoor-pos"
