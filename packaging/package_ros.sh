@@ -112,11 +112,6 @@ EOF
   export PATH=$PATH:$PWD/scripts
 popd
 
-pushd libsurvive
-  _make_deb libsurvive
-  dpkg -s libsurvive || sudo dpkg -i ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/libsurvive_*.deb
-popd
-
 # ROS packages
 pushd ../ros2_ws/src/px4_msgs
   _make_ros_deb "px4-msgs"
@@ -164,10 +159,6 @@ popd
 # 
 pushd ../ros2_ws/src/fog_bumper
   _make_ros_deb "fog-bumper"
-popd
-
-pushd ../ros2_ws/src/indoor_pos
-  _make_ros_deb "indoor-pos"
 popd
 
 pushd ../ros2_ws/src/fog_gazebo_resources

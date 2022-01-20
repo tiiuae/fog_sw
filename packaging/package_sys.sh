@@ -83,15 +83,6 @@ EOF
   export PATH=$PATH:$PWD/scripts
 popd
 
-pushd libsurvive
-  _make_deb libsurvive
-  dpkg -s libsurvive || sudo dpkg -i ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/libsurvive_*.deb
-popd
-
-# pushd rtl8812au
-#   _make_deb rtl8812au
-# popd
-
 pushd agent_protocol_splitter
   _make_deb agent_protocol_splitter
 popd

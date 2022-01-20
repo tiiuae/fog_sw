@@ -10,9 +10,6 @@
 [submodule "mavlink-router"]
 	path = mavlink-router
 	url = ../mavlink-router.git
-[submodule "tools/libsurvive"]
-	path = tools/libsurvive
-	url = ../libsurvive.git
 [submodule "ros2_ws/src/depthai_ctrl"]
 	path = ros2_ws/src/depthai_ctrl
 	url = ../depthai_ctrl.git
