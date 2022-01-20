@@ -13,9 +13,6 @@
 [submodule "tools/libsurvive"]
 	path = tools/libsurvive
 	url = ../libsurvive.git
-[submodule "ros2_ws/src/indoor_pos"]
-	path = ros2_ws/src/indoor_pos
-	url = ../indoor_pos.git
 [submodule "ros2_ws/src/depthai_ctrl"]
 	path = ros2_ws/src/depthai_ctrl
 	url = ../depthai_ctrl.git
@@ -28,9 +25,6 @@
 [submodule "systemd"]
 	path = systemd
 	url = ../fogsw_systemd.git
-[submodule "fogsw_secure_os"]
-	path = fogsw_secure_os
-	url = ../fogsw_secure_os.git
 [submodule "fogsw_configs"]
 	path = fogsw_configs
 	url = ../fogsw_configs.git
@@ -55,9 +49,6 @@
 [submodule "ros2_ws/src/control_interface"]
 	path = ros2_ws/src/control_interface
 	url = ../control_interface.git
-[submodule "rtl8812au"]
-	path = rtl8812au
-	url = ../rtl8812au.git
 [submodule "ros2_ws/src/fog_gazebo_resources"]
 	path = ros2_ws/src/fog_gazebo_resources
 	url = ../fog_gazebo_resources.git
