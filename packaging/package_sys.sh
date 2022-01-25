@@ -2,12 +2,13 @@
 
 set -e
 
-if [ ! -e /opt/ros/foxy/setup.bash ]; then
+if [ ! -e /opt/ros/galactic/setup.bash ]; then
   echo "ERROR: ROS2 environment cannot be found!"
   exit 1
 fi
 
-source /opt/ros/foxy/setup.bash
+source /opt/ros/galactic/setup.bash
+export PATH="/usr/local/go/bin:$PATH"
 
 # build types: development build, release candidate, release
 BUILD_TYPE=${1:-DEV}
@@ -41,9 +42,10 @@ if [ ! -e ${DEBS_OUTPUT_DIR} ]; then
   mkdir ${DEBS_OUTPUT_DIR}
 fi
 
-if [ ! -e /usr/lib/go-1.16/bin/ ] ; then
-    echo "ERROR: missing golang v1.16!"
-    echo "Install golang v1.16 package: golang-1.16-go."
+if ! go version > /dev/null 2>&1; then
+    echo "ERROR: missing Go!"
+    echo "Install Go from https://go.dev/dl"
+    echo "and ensure that the Go tool is in PATH."
     exit 1
 fi
 
@@ -81,15 +83,6 @@ EOF
   export PATH=$PATH:$PWD/scripts
 popd
 
-pushd libsurvive
-  _make_deb libsurvive
-  dpkg -s libsurvive || sudo dpkg -i ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/libsurvive_*.deb
-popd
-
-pushd rtl8812au
-  _make_deb rtl8812au
-popd
-
 pushd agent_protocol_splitter
   _make_deb agent_protocol_splitter
 popd
@@ -100,10 +93,6 @@ popd
 
 pushd mavlink-router
   _make_deb mavlink-router
-popd
-
-pushd mission-data-recorder
-  _make_deb mission-data-recorder
 popd
 
 pushd systemd

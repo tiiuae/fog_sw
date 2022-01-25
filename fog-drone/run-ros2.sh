@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /opt/ros/foxy/setup.bash
+source /opt/ros/galactic/setup.bash
 echo "Start Mavlink Router"
 mavlink-routerd >/fog-drone/mav_routerd_out.log 2>/fog-drone/mav_routerd_err.log &
 
@@ -52,5 +52,5 @@ mission-data-recorder \
     2>/fog-drone/mission-data-recorder_err.log &
 echo "Start Mission Engine"
 mission-engine -device_id "$DRONE_DEVICE_ID" >/fog-drone/mission-engine_out.log 2>/fog-drone/mission-engine_err.log &
-echo "Start Communication link"
-communication_link -device_id "$DRONE_DEVICE_ID" -mqtt_broker "$MQTT_BROKER_ADDRESS"
+echo "Start Cloud link"
+cloud-link -device_id "$DRONE_DEVICE_ID" -mqtt_broker "$MQTT_BROKER_ADDRESS"

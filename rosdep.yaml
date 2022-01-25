@@ -4,9 +4,6 @@ px4_msgs:
 mavsdk:
   ubuntu: [mavsdk]
 
-survive:
-    ubuntu: [libsurvive]
-
 angles:
     ubuntu: [ros-foxy-angles]
 

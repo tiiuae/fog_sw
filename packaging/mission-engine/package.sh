@@ -2,39 +2,44 @@
 
 set -euxo pipefail
 
-upstream_version=2.0.0
-deb_revision=${1:-0~dirty}
-git_version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
-git_commit_hash=$(git rev-parse HEAD)
-version="${upstream_version}-${deb_revision}${git_version}"
-echo "version: ${version}"
-
 THIS_DIR="$(dirname "$(readlink -f "$0")")"
 
 if ! go version > /dev/null 2>&1; then
-  export PATH=$PATH:/usr/lib/go-1.16/bin/
+  export PATH="/usr/local/go/bin:$PATH"
 fi
 
-cd "${THIS_DIR}"/../../ros2_ws/src/communication_link
+cd "${THIS_DIR}"/../../ros2_ws/src/mission-engine
+
+upstream_version=$(git describe --tags HEAD --abbrev=0 --match='v[0-9]*' --always)
+deb_revision=${1:-0~dirty}
+git_version=$(git log --date=format:%Y%m%d --pretty=~git%cd.%h -n 1)
+git_commit_hash=$(git rev-parse HEAD)
+[ "${upstream_version}" = "${git_commit_hash}" ] && upstream_version="v0.0.0"
+upstream_version=$(echo ${upstream_version} | tail -c+2)
+version="${upstream_version}-${deb_revision}${git_version}"
+echo "version: ${version}"
 
 export CGO_CFLAGS=
 export CGO_LDFLAGS=
 # build depedency to px4_msgs
-CGO_CFLAGS="-I$(realpath ../px4_msgs/debian/ros-foxy-px4-msgs/opt/ros/foxy/include/)"
-CGO_LDFLAGS="-L$(realpath ../px4_msgs/debian/ros-foxy-px4-msgs/opt/ros/foxy/lib/)"
+CGO_CFLAGS="-I$(realpath ../px4_msgs/debian/ros-galactic-px4-msgs/opt/ros/galactic/include/)"
+CGO_LDFLAGS="-L$(realpath ../px4_msgs/debian/ros-galactic-px4-msgs/opt/ros/galactic/lib/)"
 # build depedency to fog_msgs
-CGO_CFLAGS="${CGO_CFLAGS} -I$(realpath ../fog_msgs/debian/ros-foxy-fog-msgs/opt/ros/foxy/include/)"
-CGO_LDFLAGS="${CGO_LDFLAGS} -L$(realpath ../fog_msgs/debian/ros-foxy-fog-msgs/opt/ros/foxy/lib/)"
+CGO_CFLAGS="${CGO_CFLAGS} -I$(realpath ../fog_msgs/debian/ros-galactic-fog-msgs/opt/ros/galactic/include/)"
+CGO_LDFLAGS="${CGO_LDFLAGS} -L$(realpath ../fog_msgs/debian/ros-galactic-fog-msgs/opt/ros/galactic/lib/)"
 
 build_dir=$(mktemp -d)
 mkdir -p "${build_dir}"/DEBIAN
 mkdir -p "${build_dir}"/usr/bin/
-cp ./missionengine/packaging/debian/* "${build_dir}"/DEBIAN/
+cp ./packaging/debian/* "${build_dir}"/DEBIAN/
 
-pushd ./missionengine/cmd
-go build -o mission-engine
+PX4_PATH="../px4_msgs/debian/ros-galactic-px4-msgs/opt/ros/galactic"
+FOG_PATH="../fog_msgs/debian/ros-galactic-fog-msgs/opt/ros/galactic"
+go generate ./...
+go run github.com/tiiuae/rclgo/cmd/rclgo-gen generate -d internal/msgs -r ${PX4_PATH} ./...
+go run github.com/tiiuae/rclgo/cmd/rclgo-gen generate -d internal/msgs -r ${FOG_PATH} ./...
+go build -o mission-engine ./cmd
 cp -f mission-engine "${build_dir}"/usr/bin/
-popd
 
 sed -i "s/VERSION/${version}/" "${build_dir}"/DEBIAN/control
 cat "${build_dir}"/DEBIAN/control

@@ -8,7 +8,7 @@ if ! go version > /dev/null 2>&1; then
   export PATH="/usr/local/go/bin:$PATH"
 fi
 
-cd "${THIS_DIR}"/../../ros2_ws/src/mission-data-recorder
+cd "${THIS_DIR}"/../../ros2_ws/src/cloud-link
 
 upstream_version=$(git describe --tags HEAD --abbrev=0 --match='v[0-9]*' --always)
 deb_revision=${1:-0~dirty}
@@ -19,14 +19,25 @@ upstream_version=$(echo ${upstream_version} | tail -c+2)
 version="${upstream_version}-${deb_revision}${git_version}"
 echo "version: ${version}"
 
+# build depedency to px4_msgs
+export CGO_CFLAGS=
+export CGO_LDFLAGS=
+CGO_CFLAGS="-I$(realpath ../px4_msgs/debian/ros-galactic-px4-msgs/opt/ros/galactic/include/)"
+CGO_LDFLAGS="-L$(realpath ../px4_msgs/debian/ros-galactic-px4-msgs/opt/ros/galactic/lib/)"
+
 build_dir=$(mktemp -d)
 mkdir -p "${build_dir}"/DEBIAN
 mkdir -p "${build_dir}"/usr/bin/
 
 cp ./packaging/debian/* "${build_dir}"/DEBIAN/
+PX4_PATH="../px4_msgs/debian/ros-galactic-px4-msgs/opt/ros/galactic"
+FOG_PATH="../fog_msgs/debian/ros-galactic-fog-msgs/opt/ros/galactic"
 go generate ./...
-go build -o mission-data-recorder
-cp -f mission-data-recorder "${build_dir}"/usr/bin/
+go run github.com/tiiuae/rclgo/cmd/rclgo-gen generate -d msgs -r ${PX4_PATH} ./...
+go run github.com/tiiuae/rclgo/cmd/rclgo-gen generate -d msgs -r ${FOG_PATH} ./...
+go build -o cloud-link
+cp -f cloud-link ${build_dir}/usr/bin/
+
 
 sed -i "s/VERSION/${version}/" "${build_dir}"/DEBIAN/control
 cat "${build_dir}"/DEBIAN/control

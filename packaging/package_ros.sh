@@ -2,12 +2,13 @@
 
 set -e
 
-if [ ! -e /opt/ros/foxy/setup.bash ]; then
+if [ ! -e /opt/ros/galactic/setup.bash ]; then
   echo "ERROR: ROS2 environment cannot be found!"
   exit 1
 fi
-
-source /opt/ros/foxy/setup.bash
+#RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+source /opt/ros/galactic/setup.bash
+export PATH="/usr/local/go/bin:$PATH"
 
 # build types: development build, release candidate, release
 BUILD_TYPE=${1:-DEV}
@@ -34,6 +35,7 @@ CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH:-}
 SCRIPT_PATH=`dirname "$0"`
 SCRIPT_PATH=`( cd "$SCRIPT_PATH" && pwd )`
 DEBS_OUTPUT_DIR="deb_files"
+DDEBS_OUTPUT_DIR="ddeb_files"
 
 cd "${SCRIPT_PATH}"
 
@@ -41,9 +43,14 @@ if [ ! -e ${DEBS_OUTPUT_DIR} ]; then
   mkdir ${DEBS_OUTPUT_DIR}
 fi
 
-if [ ! -e /usr/lib/go-1.16/bin/ ] ; then
-    echo "ERROR: missing golang v1.16!"
-    echo "Install golang v1.16 package: golang-1.16-go."
+if [ ! -e ${DDEBS_OUTPUT_DIR} ]; then
+  mkdir ${DDEBS_OUTPUT_DIR}
+fi
+
+if ! go version > /dev/null 2>&1; then
+    echo "ERROR: missing Go!"
+    echo "Install Go from https://go.dev/dl"
+    echo "and ensure that the Go tool is in PATH."
     exit 1
 fi
 
@@ -56,11 +63,14 @@ function _move_debs() {
   if ls ../*.deb 1> /dev/null 2>&1; then
     mv ../*.deb ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/
   fi
+  if ls ../*.ddeb 1> /dev/null 2>&1; then
+    mv ../*.ddeb ${SCRIPT_PATH}/${DDEBS_OUTPUT_DIR}/
+  fi
 }
 
 function _execute_build() {
   local version=$1
-  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro foxy -i "${version}"
+  bloom-generate rosdebian --os-name ubuntu --os-version focal --ros-distro ${ROS_DISTRO} -i "${version}"
   sed -i 's/^\tdh_shlibdeps.*/& --dpkg-shlibdeps-params=--ignore-missing-info/g' debian/rules
   fakeroot debian/rules clean
   fakeroot debian/rules "binary --parallel"
@@ -102,38 +112,37 @@ EOF
   export PATH=$PATH:$PWD/scripts
 popd
 
-pushd libsurvive
-  _make_deb libsurvive
-  dpkg -s libsurvive || sudo dpkg -i ${SCRIPT_PATH}/${DEBS_OUTPUT_DIR}/libsurvive_*.deb
-popd
-
 # ROS packages
 pushd ../ros2_ws/src/px4_msgs
   _make_ros_deb "px4-msgs"
   # Some of the following packages needs px4_msgs, so add it to the CMAKE paths
   if [ -z "${CMAKE_PREFIX_PATH}" ]; then
-    export CMAKE_PREFIX_PATH=${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy
+    export CMAKE_PREFIX_PATH=${PWD}/debian/ros-${ROS_DISTRO}-px4-msgs/opt/ros/${ROS_DISTRO}
   else
-    export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-foxy-px4-msgs/opt/ros/foxy
+    export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-${ROS_DISTRO}-px4-msgs/opt/ros/${ROS_DISTRO}
   fi
 popd
 
 pushd ../ros2_ws/src/fog_msgs
   _make_ros_deb "fog_msgs"
   # Some of the following packages needs fog_msgs, so add it to the CMAKE paths
-  export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-foxy-fog-msgs/opt/ros/foxy
+  export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${PWD}/debian/ros-${ROS_DISTRO}-fog-msgs/opt/ros/${ROS_DISTRO}
 popd
 
 pushd ../ros2_ws/src/px4_ros_com
   _make_ros_deb "px4-ros-com"
 popd
 
-pushd communication_link
-  _make_deb communication_link
+pushd cloud-link
+  _make_deb cloud-link
 popd
 
 pushd mission-engine
   _make_deb mission-engine
+popd
+
+pushd mission-data-recorder
+  _make_deb mission-data-recorder
 popd
 
 pushd ../ros2_ws/src/mesh_com/modules/mesh_com
@@ -144,8 +153,12 @@ pushd ../ros2_ws/src/depthai_ctrl
   _make_ros_deb "depthai-ctrl"
 popd
 
-pushd ../ros2_ws/src/indoor_pos
-  _make_ros_deb "indoor-pos"
+# pushd ../ros2_ws/src/odometry2
+#   _make_ros_deb "odometry2"
+# popd
+# 
+pushd ../ros2_ws/src/fog_bumper
+  _make_ros_deb "fog-bumper"
 popd
 
 pushd ../ros2_ws/src/fog_gazebo_resources

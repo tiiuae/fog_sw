@@ -10,15 +10,6 @@
 [submodule "mavlink-router"]
 	path = mavlink-router
 	url = ../mavlink-router.git
-[submodule "ros2_ws/src/communication_link"]
-	path = ros2_ws/src/communication_link
-	url = ../communication_link.git
-[submodule "tools/libsurvive"]
-	path = tools/libsurvive
-	url = ../libsurvive.git
-[submodule "ros2_ws/src/indoor_pos"]
-	path = ros2_ws/src/indoor_pos
-	url = ../indoor_pos.git
 [submodule "ros2_ws/src/depthai_ctrl"]
 	path = ros2_ws/src/depthai_ctrl
 	url = ../depthai_ctrl.git
@@ -31,12 +22,6 @@
 [submodule "systemd"]
 	path = systemd
 	url = ../fogsw_systemd.git
-[submodule "fogsw_secure_os"]
-	path = fogsw_secure_os
-	url = ../fogsw_secure_os.git
-[submodule "ros2_ws/src/slam/lidar_slam"]
-	path = ros2_ws/src/slam/lidar_slam
-	url = ../lidar_slam.git
 [submodule "fogsw_configs"]
 	path = fogsw_configs
 	url = ../fogsw_configs.git
@@ -61,14 +46,11 @@
 [submodule "ros2_ws/src/control_interface"]
 	path = ros2_ws/src/control_interface
 	url = ../control_interface.git
-[submodule "rtl8812au"]
-	path = rtl8812au
-	url = ../rtl8812au.git
 [submodule "ros2_ws/src/fog_gazebo_resources"]
 	path = ros2_ws/src/fog_gazebo_resources
 	url = ../fog_gazebo_resources.git
 [submodule "mission-data-recorder"]
-	path = mission-data-recorder
+	path = ros2_ws/src/mission-data-recorder
 	url = ../mission-data-recorder.git
 [submodule "ros2_ws/src/mocap_pose"]
 	path = ros2_ws/src/mocap_pose
@@ -88,3 +70,21 @@
 [submodule "ros2_ws/src/update-agent"]
 	path = ros2_ws/src/update-agent
 	url = ../update-agent.git
+[submodule "ros2_ws/src/odometry2"]
+	path = ros2_ws/src/odometry2
+	url = ../odometry2.git
+[submodule "ros2_ws/src/fog_bumper"]
+	path = ros2_ws/src/fog_bumper
+	url = ../fog_bumper.git
+[submodule "fogsw_tools"]
+	path = fogsw_tools
+	url = ../fogsw_tools.git
+[submodule "ros2_ws/src/cloud-link"]
+	path = ros2_ws/src/cloud-link
+	url = ../cloud-link.git
+[submodule "ros2_ws/src/mission-engine"]
+	path = ros2_ws/src/mission-engine
+	url = ../mission-engine.git
+[submodule "ros2_ws/src/mission-data-recorder"]
+	path = ros2_ws/src/mission-data-recorder
+	url = ../mission-data-recorder.git
