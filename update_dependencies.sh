@@ -71,11 +71,10 @@ sudo apt install -y \
     ros-${ROS_DISTRO_}-dynamic-edt-3d \
     ros-${ROS_DISTRO_}-gazebo-ros \
     ros-${ROS_DISTRO_}-rmw-dds-common \
-    ros-${ROS_DISTRO_}-rmw-fastrtps-cpp \
-    ros-${ROS_DISTRO_}-rmw-fastrtps-shared-cpp \
     ros-${ROS_DISTRO_}-rmw-implementation \
-    ros-${ROS_DISTRO_}-rosidl-typesupport-fastrtps-cpp \
-    ros-${ROS_DISTRO_}-rosidl-typesupport-fastrtps-c \
+    ros-${ROS_DISTRO_}-osrf-testing-tools-cpp \
+    ros-${ROS_DISTRO_}-test-msgs \
+    ros-${ROS_DISTRO_}-performance-test-fixture \
     kernel-package \
     libncurses-dev \
     gawk \
@@ -94,7 +93,12 @@ sudo apt install -y \
     libpcsclite-dev \
     libnl-genl-3-dev \
     libreadline-dev \
-    docbook-to-man
+    docbook-to-man \
+    libasio-dev \
+    libengine-pkcs11-openssl \
+    libp11-dev \
+    libssl-dev \
+    libtinyxml2-dev
 
 curl -L https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz \
 | tar -xzC /usr/local
@@ -103,6 +107,23 @@ pip3 install --user pyros-genmsg
 
 curl -LO https://ssrc.jfrog.io/artifactory/ssrc-debian-release-remote/mavsdk_0.42.0_ubuntu20.04_amd64.deb
 sudo dpkg -i mavsdk_0.42.0_ubuntu20.04_amd64.deb
+
+# Packages needed in SROS + PKCS#11.
+SROS_PKCS11_PKGS=(
+  ros-${ROS_DISTRO_}-foonathan-memory-vendor_1.1.0-4~git20220310.bbb8a5c_amd64.deb
+  ros-${ROS_DISTRO_}-fastcdr_1.0.20-5~git20220310.f65f034_amd64.deb
+  ros-${ROS_DISTRO_}-fastrtps_2.5.0-7~git20220310.4ca1f95_amd64.deb
+  ros-${ROS_DISTRO_}-fastrtps-cmake-module_1.2.1-6~git20220310.67ed436_amd64.deb
+  ros-${ROS_DISTRO_}-rmw-fastrtps-shared-cpp_5.0.0-7~git20220310.8684e20_amd64.deb
+  ros-${ROS_DISTRO_}-rosidl-typesupport-fastrtps-cpp_1.2.1-6~git20220310.67ed436_amd64.deb
+  ros-${ROS_DISTRO_}-rosidl-typesupport-fastrtps-c_1.2.1-6~git20220310.67ed436_amd64.deb
+  ros-${ROS_DISTRO_}-px4-msgs_3.0.0-15~git20220104.c12fcdf_amd64.deb
+  ros-${ROS_DISTRO_}-fog-msgs_0.0.8-42~git20220104.1d2cf3f_amd64.deb
+)
+for PKG in "${SROS_PKCS11_PKGS[@]}"; do
+  curl -LO https://ssrc.jfrog.io/artifactory/ssrc-debian-public-remote/$PKG
+  sudo dpkg -i $PKG
+done
 
 # The following lines will make the substitution of ROS_DISTRO_ variable in rosdep_template.yaml.
 rm -rf rosdep.yaml tmp.yaml
