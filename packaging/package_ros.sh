@@ -184,3 +184,54 @@ popd
 pushd ../ros2_ws/src/mocap_pose
   _make_ros_deb "mocap-pose"
 popd
+
+pushd ../ros2_ws/src/foonathan_memory_vendor
+  _make_ros_deb "foonathan-memory-vendor"
+popd
+
+pushd ../ros2_ws/src/Fast-CDR
+  _make_ros_deb "fastcdr"
+  rm -rf debian obj-x86_64-linux-gnu
+popd
+
+pushd ../ros2_ws/src/Fast-DDS
+  _make_ros_deb "fastrtps"
+  rm -rf debian obj-x86_64-linux-gnu
+popd
+
+pushd ../ros2_ws/src/rmw_fastrtps/rmw_fastrtps_cpp
+  _make_ros_deb "rmw-fastrtps-cpp"
+  rm -rf debian obj-x86_64-linux-gnu
+popd
+
+pushd ../ros2_ws/src/rmw_fastrtps/rmw_fastrtps_dynamic_cpp
+  _make_ros_deb "rmw-fastrtps-dynamic-cpp"
+  rm -rf debian obj-x86_64-linux-gnu
+popd
+
+pushd ../ros2_ws/src/rmw_fastrtps/rmw_fastrtps_shared_cpp
+  _make_ros_deb "rmw-fastrtps-shared-cpp"
+  rm -rf debian obj-x86_64-linux-gnu
+popd
+
+pushd ../ros2_ws/src/rosidl_typesupport_fastrtps/fastrtps_cmake_module
+  _make_ros_deb "fastrtps-cmake-module"
+  rm -rf debian obj-x86_64-linux-gnu
+popd
+
+pushd ../ros2_ws/src/rosidl_typesupport_fastrtps/rosidl_typesupport_fastrtps_c
+  _make_ros_deb "rosidl-typesupport-fastrtps-c"
+  rm -rf debian obj-x86_64-linux-gnu
+popd
+
+pushd ../ros2_ws/src/rosidl_typesupport_fastrtps/rosidl_typesupport_fastrtps_cpp
+  _make_ros_deb "rosidl-typesupport-fastrtps-cpp"
+  rm -rf debian obj-x86_64-linux-gnu
+popd
+
+pushd ../ros2_ws/src/proxyapp_sros
+  _make_ros_deb "proxyapp"
+  rm -rf debian obj-x86_64-linux-gnu
+popd
+
+exit 0

@@ -88,3 +88,21 @@
 [submodule "ros2_ws/src/mission-data-recorder"]
 	path = ros2_ws/src/mission-data-recorder
 	url = ../mission-data-recorder.git
+[submodule "ros2_ws/src/proxyapp_sros"]
+	path = ros2_ws/src/proxyapp_sros
+	url = ../proxyapp_sros.git
+[submodule "ros2_ws/src/Fast-CDR"]
+	path = ros2_ws/src/Fast-CDR
+	url = ../Fast-CDR.git
+[submodule "ros2_ws/src/Fast-DDS"]
+	path = ros2_ws/src/Fast-DDS
+	url = ../Fast-DDS.git
+[submodule "ros2_ws/src/foonathan_memory_vendor"]
+	path = ros2_ws/src/foonathan_memory_vendor
+	url = ../foonathan_memory_vendor.git
+[submodule "ros2_ws/src/rosidl_typesupport_fastrtps"]
+	path = ros2_ws/src/rosidl_typesupport_fastrtps
+	url = ../rosidl_typesupport_fastrtps.git
+[submodule "ros2_ws/src/rmw_fastrtps"]
+	path = ros2_ws/src/rmw_fastrtps
+	url = ../rmw_fastrtps.git
